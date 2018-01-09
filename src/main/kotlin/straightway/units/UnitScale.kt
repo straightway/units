@@ -1,3 +1,21 @@
+/*
+ * ***************************************************************************
+ * Copyright 2016 github.com/straightway
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *  ***************************************************************************
+ *
+ */
 package straightway.units
 
 import straightway.numbers.div
@@ -31,10 +49,10 @@ data class UnitScale(val prefix: String, val magnitude: Number) : Serializable {
         }
 
         internal fun createScaleFor(magnitude: Number): UnitScale =
-            fixedScaleFor(magnitude) ?: predefine("[$magnitude]", magnitude)
+                fixedScaleFor(magnitude) ?: predefine("[$magnitude]", magnitude)
 
         internal fun fixedScaleFor(magnitude: Number): UnitScale? =
-            magnitudeToScale[key(magnitude)]
+                magnitudeToScale[key(magnitude)]
 
         private val lock = Any()
         private var magnitudeToScale: Map<String, UnitScale>
@@ -45,29 +63,29 @@ data class UnitScale(val prefix: String, val magnitude: Number) : Serializable {
 
         init {
             magnitudeToScale = mapOf<String, UnitScale>(
-                UnitScale("a", 1e-18).keyValuePair,
-                UnitScale("f", 1e-15).keyValuePair,
-                UnitScale("p", 1e-12).keyValuePair,
-                UnitScale("n", 1e-9).keyValuePair,
-                UnitScale("µ", 1e-6).keyValuePair,
-                UnitScale("m", 1e-3).keyValuePair,
-                UnitScale("c", 1e-2).keyValuePair,
-                UnitScale("d", 1e-1).keyValuePair,
-                UnitScale("", 1).keyValuePair,
-                UnitScale("da", 10).keyValuePair,
-                UnitScale("h", 100).keyValuePair,
-                UnitScale("k", 1_000).keyValuePair,
-                UnitScale("M", 1_000_000).keyValuePair,
-                UnitScale("G", 1_000_000_000).keyValuePair,
-                UnitScale("T", 1_000_000_000_000).keyValuePair,
-                UnitScale("P", 1_000_000_000_000_000).keyValuePair,
-                UnitScale("E", 1_000_000_000_000_000_000).keyValuePair,
-                UnitScale("Ki", 1_024).keyValuePair,
-                UnitScale("Mi", 1_048_576).keyValuePair,
-                UnitScale("Gi", 1_073_741_824).keyValuePair,
-                UnitScale("Ti", 1_099_511_627_776).keyValuePair,
-                UnitScale("Pi", 1_125_899_906_842_624).keyValuePair,
-                UnitScale("Ei", 1_152_921_504_606_846_976).keyValuePair)
+                    UnitScale("a", 1e-18).keyValuePair,
+                    UnitScale("f", 1e-15).keyValuePair,
+                    UnitScale("p", 1e-12).keyValuePair,
+                    UnitScale("n", 1e-9).keyValuePair,
+                    UnitScale("µ", 1e-6).keyValuePair,
+                    UnitScale("m", 1e-3).keyValuePair,
+                    UnitScale("c", 1e-2).keyValuePair,
+                    UnitScale("d", 1e-1).keyValuePair,
+                    UnitScale("", 1).keyValuePair,
+                    UnitScale("da", 10).keyValuePair,
+                    UnitScale("h", 100).keyValuePair,
+                    UnitScale("k", 1_000).keyValuePair,
+                    UnitScale("M", 1_000_000).keyValuePair,
+                    UnitScale("G", 1_000_000_000).keyValuePair,
+                    UnitScale("T", 1_000_000_000_000).keyValuePair,
+                    UnitScale("P", 1_000_000_000_000_000).keyValuePair,
+                    UnitScale("E", 1_000_000_000_000_000_000).keyValuePair,
+                    UnitScale("Ki", 1_024).keyValuePair,
+                    UnitScale("Mi", 1_048_576).keyValuePair,
+                    UnitScale("Gi", 1_073_741_824).keyValuePair,
+                    UnitScale("Ti", 1_099_511_627_776).keyValuePair,
+                    UnitScale("Pi", 1_125_899_906_842_624).keyValuePair,
+                    UnitScale("Ei", 1_152_921_504_606_846_976).keyValuePair)
         }
     }
 }
