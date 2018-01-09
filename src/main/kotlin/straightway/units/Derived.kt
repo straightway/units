@@ -16,18 +16,20 @@
  *  ***************************************************************************
  *
  */
+@file:Suppress("unused")
+
 package straightway.units
 
 import straightway.numbers.times
 
-val gravityAccelleration = 9.80665[meter / square(second)]
+val gravityAcceleration = 9.80665[meter / square(second)]
 
-typealias AbsorbedDose = Product<Square<Length>, Reciproke<Square<Time>>>
+typealias AbsorbedDose = Product<Square<Length>, Reciprocal<Square<Time>>>
 val gray: AbsorbedDose = square(meter) / square(second) withSymbol "Gy"
 
-typealias Accelleration = Product<Length, Reciproke<Square<Time>>>
+typealias Acceleration = Product<Length, Reciprocal<Square<Time>>>
 
-typealias Angle = Product<Length, Reciproke<Length>>
+typealias Angle = Product<Length, Reciprocal<Length>>
 val radian: Angle = meter / meter withSymbol "rad"
 val degree: Angle = Length("mPI/180", uni, Math.PI / 180.0) / meter withSymbol "°"
 
@@ -35,70 +37,70 @@ typealias Area = Square<Length>
 val are: Area = square(Length("dam", uni, 10)) withSymbol "a"
 val hectare: Area = square(Length("hm", uni, 100)) withSymbol "ha"
 
-typealias Bandwidth = Product<AmountOfData, Reciproke<Time>>
+typealias Bandwidth = Product<AmountOfData, Reciprocal<Time>>
 
-typealias CatalyticActivity = Product<AmountOfSubstance, Reciproke<Time>>
+typealias CatalyticActivity = Product<AmountOfSubstance, Reciprocal<Time>>
 val katal = mol / second withSymbol "kat"
 
-typealias Capacitance = Product<Product<Product<Square<Time>, Square<Time>>, Square<ElectricCurrent>>, Reciproke<Product<Mass, Square<Length>>>>
-val farad: Capacitance = square(second) * square(second) * square(ampere) / (kilo(gramm) * square(meter)) withSymbol "F"
+typealias Capacitance = Product<Product<Product<Square<Time>, Square<Time>>, Square<ElectricCurrent>>, Reciprocal<Product<Mass, Square<Length>>>>
+val farad: Capacitance = square(second) * square(second) * square(ampere) / (kilo(gram) * square(meter)) withSymbol "F"
 
 typealias ElectricCharge = Product<ElectricCurrent, Time>
 val coulomb: ElectricCharge = ampere * second withSymbol "C"
 
-typealias ElectricResistance = Product<Product<Mass, Square<Length>>, Reciproke<Product<Cubic<Time>, Square<ElectricCurrent>>>>
-val ohm: ElectricResistance = kilo(gramm) * square(meter) / (cubic(second) * square(ampere)) withSymbol "Ω"
+typealias ElectricResistance = Product<Product<Mass, Square<Length>>, Reciprocal<Product<Cubic<Time>, Square<ElectricCurrent>>>>
+val ohm: ElectricResistance = kilo(gram) * square(meter) / (cubic(second) * square(ampere)) withSymbol "Ω"
 
-typealias ElectricalConsuctance = Product<Product<Cubic<Time>, Square<ElectricCurrent>>, Reciproke<Product<Mass, Square<Length>>>>
-val siemens = cubic(second) * square(ampere) / (kilo(gramm) * square(meter)) withSymbol "S"
+typealias ElectricalConsuctance = Product<Product<Cubic<Time>, Square<ElectricCurrent>>, Reciprocal<Product<Mass, Square<Length>>>>
+val siemens = cubic(second) * square(ampere) / (kilo(gram) * square(meter)) withSymbol "S"
 
-typealias Energy = Product<Product<Mass, Square<Length>>, Reciproke<Square<Time>>>
-val joule: Energy = kilo(gramm) * square(meter) / square(second) withSymbol "J"
+typealias Energy = Product<Product<Mass, Square<Length>>, Reciprocal<Square<Time>>>
+val joule: Energy = kilo(gram) * square(meter) / square(second) withSymbol "J"
 
-typealias EquivalentDose = Product<Square<Length>, Reciproke<Square<Time>>>
+typealias EquivalentDose = Product<Square<Length>, Reciprocal<Square<Time>>>
 val sievert: EquivalentDose = square(meter) / square(second) withSymbol "Sv"
 
-typealias Force = Product<Product<Mass, Length>, Reciproke<Square<Time>>>
-val newton: Force = (kilo(gramm) * meter / square(second)) withSymbol "N"
-val poundForce: Force = Mass(uni, "lbs", uni, poundAv.baseMagnitude * gravityAccelleration.value) * meter / square(second) withSymbol "lbf"
+typealias Force = Product<Product<Mass, Length>, Reciprocal<Square<Time>>>
+val newton: Force = (kilo(gram) * meter / square(second)) withSymbol "N"
+val poundForce: Force = Mass(uni, "lbs", uni, poundAv.baseMagnitude * gravityAcceleration.value) * meter / square(second) withSymbol "lbf"
 
-typealias Frequency = Reciproke<Time>
-val hertz: Frequency = Reciproke(second) withSymbol "Hz"
+typealias Frequency = Reciprocal<Time>
+val hertz: Frequency = Reciprocal(second) withSymbol "Hz"
 
-typealias Illuminance = Product<LuminousIntensity, Reciproke<Square<Length>>>
+typealias Illuminance = Product<LuminousIntensity, Reciprocal<Square<Length>>>
 val lux: Illuminance = candela / square(meter) withSymbol "lx"
 
-typealias Inductance = Product<Product<Mass, Square<Length>>, Reciproke<Product<Square<Time>, Square<ElectricCurrent>>>>
-val henry: Inductance = kilo(gramm) * square(meter) / (square(second) * square(ampere)) withSymbol "H"
+typealias Inductance = Product<Product<Mass, Square<Length>>, Reciprocal<Product<Square<Time>, Square<ElectricCurrent>>>>
+val henry: Inductance = kilo(gram) * square(meter) / (square(second) * square(ampere)) withSymbol "H"
 
-typealias LuminousFlux = Product<LuminousIntensity, Product<Square<Length>, Reciproke<Square<Length>>>>
+typealias LuminousFlux = Product<LuminousIntensity, Product<Square<Length>, Reciprocal<Square<Length>>>>
 val lumen: LuminousFlux = (candela * (square(meter) / square(meter))).withSymbol("lm")
 
-typealias MagneticFlux = Product<Product<Mass, Square<Length>>, Reciproke<Product<Square<Time>, ElectricCurrent>>>
-val weber: MagneticFlux = kilo(gramm) * square(meter) / (square(second) * ampere) withSymbol "Wb"
+typealias MagneticFlux = Product<Product<Mass, Square<Length>>, Reciprocal<Product<Square<Time>, ElectricCurrent>>>
+val weber: MagneticFlux = kilo(gram) * square(meter) / (square(second) * ampere) withSymbol "Wb"
 
-typealias MagneticFluxDensity = Product<Mass, Reciproke<Product<Square<Time>, ElectricCurrent>>>
-val tesla: MagneticFluxDensity = kilo(gramm) / (square(second) * ampere) withSymbol "T"
+typealias MagneticFluxDensity = Product<Mass, Reciprocal<Product<Square<Time>, ElectricCurrent>>>
+val tesla: MagneticFluxDensity = kilo(gram) / (square(second) * ampere) withSymbol "T"
 
-typealias Power = Product<Product<Mass, Square<Length>>, Reciproke<Cubic<Time>>>
-val watt: Power = kilo(gramm) * square(meter) / cubic(second) withSymbol "W"
+typealias Power = Product<Product<Mass, Square<Length>>, Reciprocal<Cubic<Time>>>
+val watt: Power = kilo(gram) * square(meter) / cubic(second) withSymbol "W"
 
-typealias Pressure = Product<Mass, Reciproke<Product<Length, Square<Time>>>>
-val pascal: Pressure = kilo(gramm) / (meter * square(second)) withSymbol "Pa"
+typealias Pressure = Product<Mass, Reciprocal<Product<Length, Square<Time>>>>
+val pascal: Pressure = kilo(gram) / (meter * square(second)) withSymbol "Pa"
 val bar: Pressure = pascal withBaseMagnitude 1e5 withSymbol "bar"
 val psi: Pressure = poundForce / square(inch) normalizedToTypeOf pascal withSymbol "psi"
 
-typealias Radioactivity = Reciproke<Time>
-val becquerel: Radioactivity = Reciproke(second) withSymbol "Bq"
+typealias Radioactivity = Reciprocal<Time>
+val becquerel: Radioactivity = Reciprocal(second) withSymbol "Bq"
 
-typealias Speed = Product<Length, Reciproke<Time>>
+typealias Speed = Product<Length, Reciprocal<Time>>
 val knot: Speed = (nauticalMile / hour) withSymbol "knot"
 
-typealias SolidAngle = Product<Square<Length>, Reciproke<Square<Length>>>
+typealias SolidAngle = Product<Square<Length>, Reciprocal<Square<Length>>>
 val steradian = square(meter) / square(meter) withSymbol "sr"
 
-typealias Voltage = Product<Product<Mass, Square<Length>>, Reciproke<Product<Cubic<Time>, ElectricCurrent>>>
-val volt: Voltage = kilo(gramm) * square(meter) / (cubic(second) * ampere) withSymbol "V"
+typealias Voltage = Product<Product<Mass, Square<Length>>, Reciprocal<Product<Cubic<Time>, ElectricCurrent>>>
+val volt: Voltage = kilo(gram) * square(meter) / (cubic(second) * ampere) withSymbol "V"
 
 typealias Volume = Cubic<Length>
 val liter: Volume = cubic(Length("dm", uni, 0.1)) withSymbol "l"

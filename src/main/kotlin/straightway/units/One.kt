@@ -27,23 +27,23 @@ class One internal constructor(scale: UnitScale)
             q.timesScaleOf(this)
 
     operator fun <Q : Quantity> div(q: Q) =
-            Reciproke(q.divScaleOf(this))
+            Reciprocal(q.divScaleOf(this))
 
-    operator fun <Q : Quantity> div(q: Reciproke<Q>) = when {
-        q.explicitSymbol != null -> Reciproke(q.divScaleOf(this))
+    operator fun <Q : Quantity> div(q: Reciprocal<Q>) = when {
+        q.explicitSymbol != null -> Reciprocal(q.divScaleOf(this))
         else -> q.wrapped.withScale(uni).timesScaleOf(this).divScaleOf(q)
     }
 
     @JvmName("div_product_any_reciproke")
-    operator fun <QLeft : Quantity, QRight : Quantity> div(q: Product<QLeft, Reciproke<QRight>>) =
+    operator fun <QLeft : Quantity, QRight : Quantity> div(q: Product<QLeft, Reciprocal<QRight>>) =
             (q.right.wrapped / q.left).timesScaleOf(this)
 
     @JvmName("div_product_reciproke_any")
-    operator fun <QLeft : Quantity, QRight : Quantity> div(q: Product<Reciproke<QLeft>, QRight>) =
+    operator fun <QLeft : Quantity, QRight : Quantity> div(q: Product<Reciprocal<QLeft>, QRight>) =
             (q.left.wrapped / q.right).timesScaleOf(this)
 
     @JvmName("div_product_reciproke_reciproke")
-    operator fun <QLeft : Quantity, QRight : Quantity> div(q: Product<Reciproke<QLeft>, Reciproke<QRight>>) =
+    operator fun <QLeft : Quantity, QRight : Quantity> div(q: Product<Reciprocal<QLeft>, Reciprocal<QRight>>) =
             (q.left.wrapped * q.right.wrapped).timesScaleOf(this)
 }
 

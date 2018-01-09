@@ -28,7 +28,7 @@ class Mass constructor(
         override val baseMagnitude: Number)
     : QuantityBase(symbol, scale, { Mass(it, symbol, siScaleCorrection, baseMagnitude) })
 
-val gramm = Mass(uni, "g", kilo, 1)
+val gram = Mass(uni, "g", kilo, 1)
 val ton = Mass(uni, "t", uni, 1_000)
 val poundAv = Mass(uni, "lb. av.", uni, 0.45359237)
 val ounceAv = Mass(uni, "oz. av.", uni, poundAv.baseMagnitude / 16)

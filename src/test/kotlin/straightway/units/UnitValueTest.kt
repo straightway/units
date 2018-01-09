@@ -182,10 +182,10 @@ class UnitValueTest {
     fun convert_compatibleUnit_scaled_unit() = expect(1[(meter * second) / second][milli(meter)].unit _is equal _to milli(meter))
 
     @Test
-    fun convert_compatibleUnit_siCorrected_value() = expect(1[(kilo(gramm) * second) / second][gramm].value _is equal _to 1000.0)
+    fun convert_compatibleUnit_siCorrected_value() = expect(1[(kilo(gram) * second) / second][gram].value _is equal _to 1000.0)
 
     @Test
-    fun convert_compatibleUnit_siCorrected_unit() = expect(1[(kilo(gramm) * second) / second][gramm].unit _is equal _to gramm)
+    fun convert_compatibleUnit_siCorrected_unit() = expect(1[(kilo(gram) * second) / second][gram].unit _is equal _to gram)
 
     @Test
     fun convert_compatibleUnit_shifted_value() = expect(1[(kelvin * second) / second][kilo(celsius)].value _is equal _to -0.27215)
@@ -194,10 +194,10 @@ class UnitValueTest {
     fun convert_compatibleUnit_shifted_unit() = expect(1[(kelvin * second) / second][celsius].unit _is equal _to celsius)
 
     @Test
-    fun convert_compatibleUnit_withFactor_value() = expect(1[(pound * second) / second][kilo(gramm)].value _is equal _to 0.45359237)
+    fun convert_compatibleUnit_withFactor_value() = expect(1[(pound * second) / second][kilo(gram)].value _is equal _to 0.45359237)
 
     @Test
-    fun convert_compatibleUnit_withFactor_unit() = expect(1[(pound * second) / second][kilo(gramm)].unit _is equal _to kilo(gramm))
+    fun convert_compatibleUnit_withFactor_unit() = expect(1[(pound * second) / second][kilo(gram)].unit _is equal _to kilo(gram))
 
     @Test
     fun convert_incompatibleUnit() = expect({ 1[(meter * second) / second][mol] } does _throw - Panic::class)
@@ -241,7 +241,7 @@ class UnitValueTest {
     fun div_otherUnit() = expect(6[mol] / 3[second] _is equal _to 2[mol / second])
 
     @Test
-    fun div_scalar_first() = expect(1.0 / (2.0[mol]) _is equal _to 0.5[Reciproke(mol)])
+    fun div_scalar_first() = expect(1.0 / (2.0[mol]) _is equal _to 0.5[Reciprocal(mol)])
 
     @Test
     fun div_scalar_second() = expect((2[fahrenheit] / 2) _is equal _to 1[fahrenheit])
@@ -271,7 +271,7 @@ class UnitValueTest {
     }
 
     @Suppress("UNUSED_PARAMETER")
-    private fun bar(v: UnitValue<Number, Product<Length, Reciproke<Time>>>) {
+    private fun bar(v: UnitValue<Number, Product<Length, Reciprocal<Time>>>) {
     }
 
     private open class TestQuantity(scale: UnitScale, override val valueShift: Number)

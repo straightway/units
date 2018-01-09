@@ -20,10 +20,13 @@ package straightway.units
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
-import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 import straightway.error.Panic
 import straightway.numbers.times
+import straightway.testing.flow._throw
+import straightway.testing.flow.does
+import straightway.testing.flow.expect
+import straightway.testing.flow.minus
 
 class ProductTest {
 
@@ -49,14 +52,14 @@ class ProductTest {
 
     @Test
     fun toString_separatesReciprokeFactors() =
-            assertEquals("1/km*ms", Product(Reciproke(kilo(meter)), Reciproke(milli(second))).toString())
+            assertEquals("1/km*ms", Product(Reciprocal(kilo(meter)), Reciprocal(milli(second))).toString())
 
     @Test
     fun toString_withComplexNumeratorAndDenominator() =
             assertEquals(
                     "Mmol*kK²/ms*m²",
                     Product(kilo(kelvin), Product(mega(mol), Product(kilo(kelvin),
-                            Product(Reciproke(meter), Product(Reciproke(meter), Reciproke(milli(second))))))).toString())
+                            Product(Reciprocal(meter), Product(Reciprocal(meter), Reciprocal(milli(second))))))).toString())
 
     @Test
     fun id_dependsOnBothComponents() =
@@ -72,19 +75,19 @@ class ProductTest {
 
     @Test
     fun id_isCancelled_resultOne() =
-            assertEquals(one.id, Product(second, Reciproke(second)).id)
+            assertEquals(one.id, Product(second, Reciprocal(second)).id)
 
     @Test
     fun id_isCancelled_higherFactor() =
-            assertEquals(second.id, Product(square(second), Reciproke(second)).id)
+            assertEquals(second.id, Product(square(second), Reciprocal(second)).id)
 
     @Test
     fun id_isCancelled_higherFactor_reciproke() =
-            assertEquals(Reciproke(second).id, Product(second, Reciproke(square(second))).id)
+            assertEquals(Reciprocal(second).id, Product(second, Reciprocal(square(second))).id)
 
     @Test
     fun id_isCancelled_reciproke_reciproke() =
-            assertEquals(cubic(second).id, Product(second, Reciproke(Reciproke(square(second)))).id)
+            assertEquals(cubic(second).id, Product(second, Reciprocal(Reciprocal(square(second)))).id)
 
     @Test
     fun withSymbol_keepsShortId() =
@@ -103,12 +106,12 @@ class ProductTest {
             assertEquals(deca, (kilo(meter) * centi(second)).withSymbol("X").siScale)
 
     @Test
-    fun withSymbol_scaledFacors_hasScaleUni() =
+    fun withSymbol_scaledFactors_hasScaleUni() =
             assertEquals(uni, (kilo(meter) * hecto(second)).withSymbol("X").scale)
 
     @Test
     fun withSymbol_respectsScaleCorrection() =
-            assertEquals(milli, (gramm * second).withSymbol("X").siScale)
+            assertEquals(milli, (gram * second).withSymbol("X").siScale)
 
     @Test
     fun withSymbol_ofScaledUni_rescaled() =
@@ -164,11 +167,11 @@ class ProductTest {
 
     @Test
     fun scale_isProductOfBothScalesScale_withLeftScaleCorrection() =
-            assertEquals(mega, Product(kilo(gramm), mega(second)).scale)
+            assertEquals(mega, Product(kilo(gram), mega(second)).scale)
 
     @Test
     fun scale_isProductOfBothScalesScale_withRightScaleCorrection() =
-            assertEquals(mega, Product(mega(second), kilo(gramm)).scale)
+            assertEquals(mega, Product(mega(second), kilo(gram)).scale)
 
     @Test
     fun isScalable() =
@@ -196,7 +199,7 @@ class ProductTest {
 
     @Test
     fun normalizeToTypeOf_otherType_throws() =
-            assertThrows(Panic::class.java) { meter * second normalizedToTypeOf joule }
+            expect({ meter * second normalizedToTypeOf joule } does _throw - Panic::class)
 
     @Test
     fun normalizeToTypeOf_keepsSymbol() =
@@ -228,7 +231,7 @@ class ProductTest {
 
     @Test
     fun div_createsProductWithReciproke() =
-            assertEquals(Product(meter, Reciproke(second)), meter / second)
+            assertEquals(Product(meter, Reciprocal(second)), meter / second)
 
     @Test
     fun div_one_createsProductWithReciproke() =
@@ -244,15 +247,15 @@ class ProductTest {
 
     @Test
     fun square_respectsCorrectedSiScale() =
-            assertEquals(uni, square(kilo(gramm)).scale)
+            assertEquals(uni, square(kilo(gram)).scale)
 
     @Test
     fun square_toString() =
             assertEquals("m²", square(meter).toString())
 
     @Test
-    fun Mass_square_toString() =
-            assertEquals("kg²", square(kilo(gramm)).toString())
+    fun mass_square_toString() =
+            assertEquals("kg²", square(kilo(gram)).toString())
 
     @Test
     fun square_toString_withScale() =
@@ -264,7 +267,7 @@ class ProductTest {
 
     @Test
     fun cubic_respectsCorrectedSiScale() =
-            assertEquals(uni, cubic(kilo(gramm)).scale)
+            assertEquals(uni, cubic(kilo(gram)).scale)
 
     @Test
     fun cubic_toString() =
@@ -280,7 +283,7 @@ class ProductTest {
 
     @Test
     fun pow4_respectsCorrectedSiScale() =
-            assertEquals(uni, Product(kilo(gramm), cubic(kilo(gramm))).scale)
+            assertEquals(uni, Product(kilo(gram), cubic(kilo(gram))).scale)
 
     @Test
     fun pow4_toString() =

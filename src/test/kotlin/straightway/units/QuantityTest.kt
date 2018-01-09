@@ -33,15 +33,15 @@ class QuantityTest {
 
     @Test
     fun siScale_withSiScaleCorrection_unscaled() =
-            assertEquals(milli, gramm.siScale)
+            assertEquals(milli, gram.siScale)
 
     @Test
     fun siScale_withSiScaleCorrection_scaledToSiScaleCorrection() =
-            assertEquals(uni, kilo(gramm).siScale)
+            assertEquals(uni, kilo(gram).siScale)
 
     @Test
-    fun siScale_withSiScaleCorrection_upscaled() =
-            assertEquals(kilo, mega(gramm).siScale)
+    fun siScale_withSiScaleCorrection_upScaled() =
+            assertEquals(kilo, mega(gram).siScale)
 
     @Test
     fun timesScaleOf_considersReceiverScale() =
@@ -57,15 +57,15 @@ class QuantityTest {
 
     @Test
     fun timesScaleOf_considersReceiverSiScaleCorrection() =
-            assertEquals(kilo(gramm), kilo(gramm).timesScaleOf(mol))
+            assertEquals(kilo(gram), kilo(gram).timesScaleOf(mol))
 
     @Test
     fun timesScaleOf_considersParametersSiScaleCorrection() =
-            assertEquals(meter, meter.timesScaleOf(kilo(gramm)))
+            assertEquals(meter, meter.timesScaleOf(kilo(gram)))
 
     @Test
     fun timesScaleOf_considersBothSiScaleCorrections() =
-            assertEquals(kilo(gramm), kilo(gramm).timesScaleOf(kilo(gramm)))
+            assertEquals(kilo(gram), kilo(gram).timesScaleOf(kilo(gram)))
 
     @Test
     fun timesScaleOf_uni_returnsReceiver() {
@@ -76,7 +76,7 @@ class QuantityTest {
     @Test
     fun timesScaleOf_correctedUni_returnsReceiver() {
         val sut = kilo(meter)
-        assertSame(sut, sut.timesScaleOf(kilo(gramm)))
+        assertSame(sut, sut.timesScaleOf(kilo(gram)))
     }
 
     @Test
@@ -93,15 +93,15 @@ class QuantityTest {
 
     @Test
     fun divScaleOf_considersReceiverSiScaleCorrection() =
-            assertEquals(kilo(gramm), kilo(gramm).divScaleOf(meter))
+            assertEquals(kilo(gram), kilo(gram).divScaleOf(meter))
 
     @Test
     fun divScaleOf_considersParametersSiScaleCorrection() =
-            assertEquals(meter, meter.divScaleOf(kilo(gramm)))
+            assertEquals(meter, meter.divScaleOf(kilo(gram)))
 
     @Test
     fun divScaleOf_considersBothSiScaleCorrections() =
-            assertEquals(kilo(gramm), kilo(gramm).divScaleOf(kilo(gramm)))
+            assertEquals(kilo(gram), kilo(gram).divScaleOf(kilo(gram)))
 
     @Test
     fun divScaleOf_uni_returnsReceiver() {
@@ -112,6 +112,6 @@ class QuantityTest {
     @Test
     fun divScaleOf_correctedUni_returnsReceiver() {
         val sut = kilo(meter)
-        assertSame(sut, sut.divScaleOf(kilo(gramm)))
+        assertSame(sut, sut.divScaleOf(kilo(gram)))
     }
 }

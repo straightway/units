@@ -47,7 +47,7 @@ private constructor(
             Product(left, right, scale, false, baseMagnitude, explicitSymbol)
 
     infix fun withSymbol(newSymbol: String) =
-            Product(left, right, uni, false, baseMagnitude, newSymbol, siScale.reciproke)
+            Product(left, right, uni, false, baseMagnitude, newSymbol, siScale.reciprocal)
 
     infix fun withBaseMagnitude(baseMagnitude: Number): Product<QLeft, QRight> =
             Product(left, right, scale, isAutoScale, baseMagnitude, explicitSymbol)
@@ -100,7 +100,7 @@ operator fun <QLeft : Quantity, QRight : Quantity> QLeft.times(right: QRight) =
         Product(this, right)
 
 operator fun <QLeft : Quantity, QRight : Quantity> QLeft.div(right: QRight) =
-        Product(this, Reciproke(right))
+        Product(this, Reciprocal(right))
 
 typealias Square<T> = Product<T, T>
 fun <T : Quantity> square(q: T) = Square(q, q)
@@ -124,7 +124,7 @@ private fun List<String>.numerators(default: String) =
 private val List<String>.denominators: List<String>
     get() {
         val result = this.filter { it.id }.map { it.substring(2) }
-        return if (result.isEmpty()) listOf<String>() else listOf(result.joinToString("*"))
+        return if (result.isEmpty()) listOf() else listOf(result.joinToString("*"))
     }
 
 private fun List<String>.combineWithDefault(default: String) =
@@ -132,7 +132,7 @@ private fun List<String>.combineWithDefault(default: String) =
 
 private fun Quantity.sortedFactors(getter: Quantity.() -> String): List<String> = when (this) {
     is Product<*, *> -> left.sortedFactors(getter) + right.sortedFactors(getter)
-    is Reciproke<*> -> this.wrapped.sortedFactors(getter).map { it.reciproke }
+    is Reciprocal<*> -> this.wrapped.sortedFactors(getter).map { it.reciproke }
     else -> kotlin.collections.listOf(getter())
 }
 

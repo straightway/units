@@ -124,7 +124,7 @@ class TimeTest {
             expect(1[nano(second)].toDuration() _is equal _to Duration.ofNanos(1))
 
     @Test
-    fun toDuration_int_irrgeularUnitScale() =
+    fun toDuration_int_irregularUnitScale() =
             expect(1[UnitScale(1e-7)(second)].toDuration() _is equal _to Duration.ofNanos(100))
 
     @Test

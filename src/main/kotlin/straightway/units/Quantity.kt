@@ -40,7 +40,7 @@ interface Quantity : Serializable {
     /**
      * The correction of the scale of the base SI unit.
      * Some units do not have 'uni' as base scale. This is especially true for masses
-     * with the SI unit kilogramm.
+     * with the SI unit kilogram.
      */
     val siScaleCorrection: UnitScale get() = uni
 
@@ -62,16 +62,16 @@ interface Quantity : Serializable {
     infix fun withScale(scale: UnitScale): Quantity
 }
 
-val Quantity.siScale get() = scale * siScaleCorrection.reciproke
+val Quantity.siScale get() = scale * siScaleCorrection.reciprocal
 operator fun <Q : Quantity> Q.times(other: One) = this.timesScaleOf(other)
 @Suppress("UNCHECKED_CAST")
 fun <Q : Quantity> Q.timesScaleOf(other: Quantity) = when (other.siScale) {
     uni -> this
-    else -> this.withScale(scale * other.scale * other.siScaleCorrection.reciproke) as Q
+    else -> this.withScale(scale * other.scale * other.siScaleCorrection.reciprocal) as Q
 }
 
 @Suppress("UNCHECKED_CAST")
 fun <Q : Quantity> Q.divScaleOf(other: Quantity) = when (other.siScale) {
     uni -> this
-    else -> this.withScale(scale * other.siScaleCorrection * other.scale.reciproke) as Q
+    else -> this.withScale(scale * other.siScaleCorrection * other.scale.reciprocal) as Q
 }

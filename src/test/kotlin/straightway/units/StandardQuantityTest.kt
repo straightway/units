@@ -56,7 +56,7 @@ class StandardQuantityTest {
     private fun testToString_unscaled() = assertEquals("1 ${sut.stringRep}".trimEnd(), 1[sut.quantity].toString()) { "${sut.quantity}.toString" }
 
     private fun testToString_scaled() = assertEquals(
-            if (sut.mustUseParens) "1 m(${sut.stringRep})" else "1 m${sut.stringRep}",
+            if (sut.mustUseParenthesis) "1 m(${sut.stringRep})" else "1 m${sut.stringRep}",
             1[milli(sut.quantity)].toString()) { "${sut.quantity}.toString" }
 
     private fun testTimesOne() = assertEquals(sut.quantity.timesScaleOf(kilo(one)), sut.quantity * kilo(one)) { "${sut.quantity}.times(one)" }
@@ -83,7 +83,7 @@ class StandardQuantityTest {
         constructor(quantity: Quantity, stringRep: String)
                 : this(quantity, stringRep, isQuantityRepresentative = false, expectedId = quantity.id)
 
-        val mustUseParens
+        val mustUseParenthesis
             get() = when (stringRep.last()) {
                 '4', '5', '6', '7', '8', '9', '²', '³' -> true
                 else -> stringRep.contains('/')
@@ -128,14 +128,14 @@ class StandardQuantityTest {
             TestedQuantity(meter / second, "m/s").quantityRepresentative(),
             TestedQuantity(knot, "knot") withSameIdAs meter / second,
             TestedQuantity(candela, "cd").quantityRepresentative(),
-            TestedQuantity(gramm, "g").quantityRepresentative(),
-            TestedQuantity(ton, "t") withSameIdAs gramm,
-            TestedQuantity(pound, "lbs") withSameIdAs gramm,
-            TestedQuantity(ounce, "oz") withSameIdAs gramm,
-            TestedQuantity(poundAv, "lb. av.") withSameIdAs gramm,
-            TestedQuantity(ounceAv, "oz. av.") withSameIdAs gramm,
-            TestedQuantity(poundAp, "lb. ap.") withSameIdAs gramm,
-            TestedQuantity(ounceAp, "oz. ap.") withSameIdAs gramm,
+            TestedQuantity(gram, "g").quantityRepresentative(),
+            TestedQuantity(ton, "t") withSameIdAs gram,
+            TestedQuantity(pound, "lbs") withSameIdAs gram,
+            TestedQuantity(ounce, "oz") withSameIdAs gram,
+            TestedQuantity(poundAv, "lb. av.") withSameIdAs gram,
+            TestedQuantity(ounceAv, "oz. av.") withSameIdAs gram,
+            TestedQuantity(poundAp, "lb. ap.") withSameIdAs gram,
+            TestedQuantity(ounceAp, "oz. ap.") withSameIdAs gram,
             TestedQuantity(kelvin, "K").quantityRepresentative(),
             TestedQuantity(second, "s").quantityRepresentative(),
             TestedQuantity(minute, "min") withSameIdAs second,
@@ -143,8 +143,8 @@ class StandardQuantityTest {
             TestedQuantity(day, "d") withSameIdAs second,
             TestedQuantity(week, "wk") withSameIdAs second,
             TestedQuantity(year, "a") withSameIdAs second,
-            TestedQuantity(newton, "N").quantityRepresentative() withSameIdAs kilo(gramm) * meter / square(second),
-            TestedQuantity(poundForce, "lbf") withSameIdAs kilo(gramm) * meter / square(second),
+            TestedQuantity(newton, "N").quantityRepresentative() withSameIdAs kilo(gram) * meter / square(second),
+            TestedQuantity(poundForce, "lbf") withSameIdAs kilo(gram) * meter / square(second),
             TestedQuantity(hertz, "Hz").quantityRepresentative() withSameIdAs one / second,
             TestedQuantity(pascal, "Pa").quantityRepresentative() withSameIdAs newton / square(meter),
             TestedQuantity(bar, "bar") withSameIdAs pascal,
@@ -161,15 +161,15 @@ class StandardQuantityTest {
             TestedQuantity(henry, "H").quantityRepresentative() withSameIdAs weber / ampere,
             TestedQuantity(lumen, "lm") withSameIdAs candela,
             TestedQuantity(lux, "lx").quantityRepresentative() withSameIdAs lumen / square(meter),
-            TestedQuantity(becquerel, "Bq") withSameIdAs Reciproke(second),
-            TestedQuantity(gray, "Gy").quantityRepresentative() withSameIdAs joule / kilo(gramm),
-            TestedQuantity(sievert, "Sv") withSameIdAs joule / kilo(gramm),
+            TestedQuantity(becquerel, "Bq") withSameIdAs Reciprocal(second),
+            TestedQuantity(gray, "Gy").quantityRepresentative() withSameIdAs joule / kilo(gram),
+            TestedQuantity(sievert, "Sv") withSameIdAs joule / kilo(gram),
             TestedQuantity(katal, "kat").quantityRepresentative() withSameIdAs mol / second)
 
     //region Private
 
-    val collectedUnitIds = mutableSetOf<String>()
-    val allUnitIds = testedQuantities.filter { it.isQuantityRepresentative }.map { it.quantity.id }.toHashSet()
+    private val collectedUnitIds = mutableSetOf<String>()
+    private val allUnitIds = testedQuantities.filter { it.isQuantityRepresentative }.map { it.quantity.id }.toHashSet()
 
     //endregion
 }

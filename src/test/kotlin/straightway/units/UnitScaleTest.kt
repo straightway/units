@@ -25,7 +25,7 @@ import straightway.numbers.times
 class UnitScaleTest {
     @Test
     fun reciproke_timesOriginal_isUni() =
-            assertEquals(1.0, kilo.magnitude * kilo.reciproke.magnitude)
+            assertEquals(1.0, kilo.magnitude * kilo.reciprocal.magnitude)
 
     @Test
     fun construction_withNonPredefinedMagnitude_autoCreatesPrefix() =

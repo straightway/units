@@ -36,7 +36,7 @@ typealias UnitNumber<TQuantity> = UnitValue<*, TQuantity>
 
 /**
  * Combine a numerical value with a unit.
- * Basic artihmetic is available for unit values, either with other unit values
+ * Basic arithmetic is available for unit values, either with other unit values
  * or with scalars.
  */
 data class UnitValue<TValue : Number, TQuantity : Quantity>(
@@ -45,9 +45,9 @@ data class UnitValue<TValue : Number, TQuantity : Quantity>(
     val baseValue get() = value * unit.siScale.magnitude * unit.baseMagnitude + unit.valueShift
 
     operator fun get(newUnit: TQuantity) =
-            UnitValue((baseValue - newUnit.valueShift) * newUnit.siScale.reciproke.magnitude / newUnit.baseMagnitude, newUnit)
+            UnitValue((baseValue - newUnit.valueShift) * newUnit.siScale.reciprocal.magnitude / newUnit.baseMagnitude, newUnit)
 
-    operator fun unaryMinus() = UnitValue<TValue, TQuantity>(-value, unit)
+    operator fun unaryMinus() = UnitValue(-value, unit)
     operator fun unaryPlus() = this
 
     override fun toString() =
@@ -72,7 +72,7 @@ operator fun <TNum : Number, TQuantity : Quantity> TNum.get(unit: TQuantity) =
         UnitValue(this, unit)
 
 /**
- * Convert the given unit value to a value with another compatibe unit.
+ * Convert the given unit value to a value with another compatible unit.
  * This can be useful to assign a simplified unit when using arithmetic operators
  * with unit values.
  */
@@ -95,7 +95,7 @@ operator fun <TNum1 : Number, TNum2 : Number, TQuantity1 : Quantity, TQuantity2 
 
 operator fun <TNum : Number, TQuantity : Quantity>
         TNum.times(other: UnitValue<TNum, TQuantity>) =
-        UnitValue<TNum, TQuantity>((this * other.value) as TNum, other.unit)
+        UnitValue((this * other.value) as TNum, other.unit)
 
 operator fun <TNum : Number, TQuantity : Quantity>
         UnitValue<TNum, TQuantity>.times(other: TNum) = other * this
@@ -106,11 +106,11 @@ operator fun <TNum1 : Number, TNum2 : Number, TQuantity1 : Quantity, TQuantity2 
 
 operator fun <TNum : Number, TQuantity : Quantity>
         TNum.div(other: UnitValue<TNum, TQuantity>) =
-        UnitValue<TNum, Reciproke<TQuantity>>((this / other.value) as TNum, Reciproke(other.unit))
+        UnitValue((this / other.value) as TNum, Reciprocal(other.unit))
 
 operator fun <TNum : Number, TQuantity : Quantity>
         UnitValue<TNum, TQuantity>.div(other: TNum) =
-        UnitValue<TNum, TQuantity>((value / other) as TNum, unit)
+        UnitValue((value / other) as TNum, unit)
 
 fun <TQuantity : Quantity> min(vararg items: UnitNumber<TQuantity>) = items.min()!!
 

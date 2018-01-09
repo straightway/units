@@ -66,11 +66,11 @@ class OneTest {
 
     @Test
     fun one_div_quantity_isReciprokeQuantity() =
-            assertEquals(Reciproke(mol), one / mol)
+            assertEquals(Reciprocal(mol), one / mol)
 
     @Test
     fun one_div_quantity_usesReciprokeScaleOfQuantity() =
-            assertEquals(Reciproke(kilo(mol)), one / kilo(mol))
+            assertEquals(Reciprocal(kilo(mol)), one / kilo(mol))
 
     @Test
     fun one_div_quantity_usesScaleOfReceiver() =
@@ -78,19 +78,19 @@ class OneTest {
 
     @Test
     fun one_div_reciproke_isQuantity() =
-            assertEquals(mol, one / Reciproke(mol))
+            assertEquals(mol, one / Reciprocal(mol))
 
     @Test
     fun one_div_reciproke_usesReciprokeScaleOfQuantity() =
-            assertEquals(kilo(mol), one / Reciproke(kilo(mol)))
+            assertEquals(kilo(mol), one / Reciprocal(kilo(mol)))
 
     @Test
     fun one_div_div_reciproke_isIdentical() =
-            assertEquals(Reciproke(kilo(mol)), one / (one / Reciproke(kilo(mol))))
+            assertEquals(Reciprocal(kilo(mol)), one / (one / Reciprocal(kilo(mol))))
 
     @Test
     fun one_div_div_reciproke_hasExpectedStringRepresentation() =
-            assertEquals("1/kmol", (one / (one / Reciproke(kilo(mol)))).toString())
+            assertEquals("1/kmol", (one / (one / Reciprocal(kilo(mol)))).toString())
 
     @Test
     fun one_div_div_reciproke_withSymbol_hasExpectedStringRepresentation() =
@@ -98,7 +98,7 @@ class OneTest {
 
     @Test
     fun one_div_div_reciproke_withSymbol_scaledReceiver() =
-            assertEquals(Reciproke(kilo(hertz)), kilo(one) / mega(hertz))
+            assertEquals(Reciprocal(kilo(hertz)), kilo(one) / mega(hertz))
 
     @Test
     fun one_div_div_reciproke_withSymbol_scaledReceiver_hasExpectedStringRepresentation() =
@@ -106,15 +106,15 @@ class OneTest {
 
     @Test
     fun one_div_reciproke_usesScaleOfReceiver() =
-            assertEquals(kilo, (kilo(one) / Reciproke(mol)).scale)
+            assertEquals(kilo, (kilo(one) / Reciprocal(mol)).scale)
 
     @Test
     fun one_div_reciproke_withExplicitScale_usesScaleOfParameter() =
-            assertEquals(milli(mol), one / Reciproke(mol).withScale(kilo))
+            assertEquals(milli(mol), one / Reciprocal(mol).withScale(kilo))
 
     @Test
     fun one_div_product() =
-            assertEquals(Reciproke(mol * second), one / (mol * second))
+            assertEquals(Reciprocal(mol * second), one / (mol * second))
 
     @Test
     fun one_div_product_usesScaleOfReceiver() =
@@ -122,7 +122,7 @@ class OneTest {
 
     @Test
     fun one_div_product_usesScaleOfProduct() =
-            assertEquals(Reciproke(kilo(mol) * second), one / (kilo(mol) * second))
+            assertEquals(Reciprocal(kilo(mol) * second), one / (kilo(mol) * second))
 
     @Test
     fun one_div_product_toString_usesScaleOfProduct() =
@@ -130,7 +130,7 @@ class OneTest {
 
     @Test
     fun reciproke_product_toString_usesScaleOfProduct() =
-            assertEquals("1/kmol*s", Reciproke((kilo(mol) * second)).toString())
+            assertEquals("1/kmol*s", Reciprocal((kilo(mol) * second)).toString())
 
     @Test
     fun one_div_quotient() =
@@ -142,11 +142,11 @@ class OneTest {
 
     @Test
     fun one_div_denominator_numerator() =
-            assertEquals(second / meter, one / (Reciproke(second) * meter))
+            assertEquals(second / meter, one / (Reciprocal(second) * meter))
 
     @Test
     fun one_div_denominator_numerator_usesScaleOfReceiver() =
-            assertEquals(kilo, (kilo(one) / (Reciproke(second) * meter)).scale)
+            assertEquals(kilo, (kilo(one) / (Reciprocal(second) * meter)).scale)
 
     @Test
     fun one_div_denominator_numeratorProduct() =
@@ -158,13 +158,13 @@ class OneTest {
 
     @Test
     fun one_div_plainProduct() =
-            assertEquals(Reciproke(meter * second), one / (meter * second))
+            assertEquals(Reciprocal(meter * second), one / (meter * second))
 
     @Test
-    fun one_div_productOfReciprokes() =
-            assertEquals(meter * second, one / (Reciproke(meter) * Reciproke(second)))
+    fun one_div_productOfReciprocals() =
+            assertEquals(meter * second, one / (Reciprocal(meter) * Reciprocal(second)))
 
     @Test
-    fun one_div_productOfReciprokes_usesScaleOfReceiver() =
-            assertEquals(kilo, (kilo(one) / (Reciproke(meter) * Reciproke(second))).scale)
+    fun one_div_productOfReciprocals_usesScaleOfReceiver() =
+            assertEquals(kilo, (kilo(one) / (Reciprocal(meter) * Reciprocal(second))).scale)
 }
