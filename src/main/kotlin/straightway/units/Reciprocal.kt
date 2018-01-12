@@ -23,7 +23,7 @@ import straightway.numbers.times
 
 /**
  * The reciprocal of a given quantity.
- * Please notice that due to language restrictions, the reciprocal of the reciprocal,
+ * Please notice that due to language restrictions, the reciprocal of a reciprocal,
  * which should end up in the identical unit, is not identical with this type.
  * However, equivalent quantities are guaranteed to have the same id.
  */

@@ -16,6 +16,12 @@
  *  ***************************************************************************
  *
  */
+
+/*
+ * This file contains definitions for common quantities. Prefer using these definitions over defining
+ * own quantities or just use the 'random' results of unit arithmetic (see samples for explanation).
+ */
+
 @file:Suppress("unused")
 
 package straightway.units
@@ -51,7 +57,7 @@ val coulomb: ElectricCharge = ampere * second withSymbol "C"
 typealias ElectricResistance = Product<Product<Mass, Square<Length>>, Reciprocal<Product<Cubic<Time>, Square<ElectricCurrent>>>>
 val ohm: ElectricResistance = kilo(gram) * square(meter) / (cubic(second) * square(ampere)) withSymbol "Ω"
 
-typealias ElectricalConsuctance = Product<Product<Cubic<Time>, Square<ElectricCurrent>>, Reciprocal<Product<Mass, Square<Length>>>>
+typealias ElectricalConductance = Product<Product<Cubic<Time>, Square<ElectricCurrent>>, Reciprocal<Product<Mass, Square<Length>>>>
 val siemens = cubic(second) * square(ampere) / (kilo(gram) * square(meter)) withSymbol "S"
 
 typealias Energy = Product<Product<Mass, Square<Length>>, Reciprocal<Square<Time>>>

@@ -47,16 +47,16 @@ fun UnitValue<*, Time>.toDuration(): Duration {
 }
 
 operator fun <T : Number> LocalDateTime.plus(amount: UnitValue<T, Time>) =
-        this + amount.toDuration()
+        (this + amount.toDuration())!!
 
 operator fun <T : Number> LocalDateTime.minus(amount: UnitValue<T, Time>) =
-        this - amount.toDuration()
+        (this - amount.toDuration())!!
 
 operator fun LocalDateTime.minus(other: LocalDateTime): UnitNumber<Time> =
         Duration.between(other, this).toTime()
 
 fun Duration.toTime() = this.nano[nano(second)] + this.seconds[second]
 
-private val ZERO_TIME = LocalDateTime.of(0, 1, 1, 0, 0)
-val UnitValue<*, Time>.absolute get() = ZERO_TIME + this
-val LocalDateTime.unitValue: UnitValue<*, Time> get() = this - ZERO_TIME
+private val zeroTime = LocalDateTime.of(0, 1, 1, 0, 0)
+val UnitValue<*, Time>.absolute get() = zeroTime + this
+val LocalDateTime.unitValue: UnitValue<*, Time> get() = this - zeroTime

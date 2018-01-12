@@ -24,7 +24,7 @@ import java.io.Serializable
 
 /**
  * The scale for a unit.
- * A scale can be applied to a unit using the invokation operator (round braces).
+ * A scale can be applied to a unit using the invocation operator (round braces).
  */
 data class UnitScale(val prefix: String, val magnitude: Number) : Serializable {
     private constructor(original: UnitScale) : this(original.prefix, original.magnitude)
@@ -83,6 +83,5 @@ data class UnitScale(val prefix: String, val magnitude: Number) : Serializable {
         private fun key(magnitude: Number) = magnitude.toString().let {
             if (it.contains('.')) it.trimEnd(' ', '0').trimEnd('.') else it
         }
-
     }
 }

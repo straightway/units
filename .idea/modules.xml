@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/samples.iml" filepath="$PROJECT_DIR$/.idea/modules/samples.iml" group="samples" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/samples/samples_main.iml" filepath="$PROJECT_DIR$/.idea/modules/samples/samples_main.iml" group="samples" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/samples/samples_test.iml" filepath="$PROJECT_DIR$/.idea/modules/samples/samples_test.iml" group="samples" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/units.iml" filepath="$PROJECT_DIR$/.idea/modules/units.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/units_main.iml" filepath="$PROJECT_DIR$/.idea/modules/units_main.iml" group="units" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/units_test.iml" filepath="$PROJECT_DIR$/.idea/modules/units_test.iml" group="units" />
