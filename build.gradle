@@ -19,7 +19,7 @@
 
 buildscript {
 
-    ext.kotlin_version = '1.2.10'
+    ext.kotlin_version = '1.2.20'
 
     repositories {
         mavenCentral()
@@ -28,7 +28,7 @@ buildscript {
         }    }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "gradle.plugin.org.jmailen.gradle:kotlinter-gradle:1.6.0"    }
+    }
 }
 
 group 'straightway'
@@ -36,7 +36,7 @@ version '0.2'
 
 apply plugin: 'kotlin'
 apply plugin: 'maven'
-apply plugin: 'org.jmailen.kotlinter'
+apply plugin: 'idea'
 
 repositories {
     mavenCentral()
