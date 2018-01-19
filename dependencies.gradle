@@ -15,7 +15,5 @@
  * limitations under the License.
  *  ***************************************************************************
  */
-
-rootProject.projectDir = new File(rootProject.projectDir.parent)
-
-apply from: "dependencies.gradle"
+include 'units'
+include 'units:samples'
