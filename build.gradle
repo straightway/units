@@ -46,10 +46,10 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     testCompile "org.junit.jupiter:junit-jupiter-api:5.0.0-M4"
     testCompile "org.mockito:mockito-core:1.+"
-    compile "straightway:dsl:0.1-SNAPSHOT"
-    compile "straightway:numbers:0.1-SNAPSHOT"
-    compile "straightway:error:0.1-SNAPSHOT"
-    testCompile "straightway:testing:0.1-SNAPSHOT"
+    compile findProject(":dsl") ?: "straightway:dsl:0.1-SNAPSHOT"
+    compile findProject(":numbers") ?: "straightway:numbers:0.1-SNAPSHOT"
+    compile findProject(":error") ?: "straightway:error:0.1-SNAPSHOT"
+    testCompile findProject(":testing") ?: "straightway:testing:0.1-SNAPSHOT"
 
 }
 

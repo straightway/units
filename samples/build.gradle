@@ -24,8 +24,8 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    compile "straightway:units:0.2"
-    compile "straightway:error:0.1-SNAPSHOT"
+    compile findProject(":units") ?: "straightway:units:0.2"
+    compile findProject(":error") ?: "straightway:error:0.1-SNAPSHOT"
 }
 
 compileKotlin {
