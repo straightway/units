@@ -1,29 +1,26 @@
 /*
- * ***************************************************************************
  * Copyright 2016 github.com/straightway
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *  http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *  ***************************************************************************
- *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
 package straightway.units
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import straightway.testing.flow._is
-import straightway.testing.flow._to
 import straightway.testing.flow.equal
 import straightway.testing.flow.expect
+import straightway.testing.flow.is_
+import straightway.testing.flow.to_
 import java.time.Duration
 import java.time.LocalDateTime
 
@@ -105,50 +102,50 @@ class TimeTest {
 
     @Test
     fun add_toLocalDateTime() = expect(
-            LocalDateTime.of(0, 1, 1, 0, 0) + 1[minute] _is equal _to LocalDateTime.of(0, 1, 1, 0, 1))
+            LocalDateTime.of(0, 1, 1, 0, 0) + 1[minute] is_ equal to_ LocalDateTime.of(0, 1, 1, 0, 1))
 
     @Test
     fun add_toLocalDateTime_chained() = expect(
-            LocalDateTime.of(0, 1, 1, 0, 0) + 1[minute] + 1[minute] _is equal _to LocalDateTime.of(0, 1, 1, 0, 2))
+            LocalDateTime.of(0, 1, 1, 0, 0) + 1[minute] + 1[minute] is_ equal to_ LocalDateTime.of(0, 1, 1, 0, 2))
 
     @Test
     fun sub_fromLocalDateTime() = expect(
-            LocalDateTime.of(0, 1, 1, 0, 1) - 1[minute] _is equal _to LocalDateTime.of(0, 1, 1, 0, 0))
+            LocalDateTime.of(0, 1, 1, 0, 1) - 1[minute] is_ equal to_ LocalDateTime.of(0, 1, 1, 0, 0))
 
     @Test
     fun toDuration_int_seconds() =
-            expect(1[second].toDuration() _is equal _to Duration.ofSeconds(1))
+            expect(1[second].toDuration() is_ equal to_ Duration.ofSeconds(1))
 
     @Test
     fun toDuration_int_nanoSeconds() =
-            expect(1[nano(second)].toDuration() _is equal _to Duration.ofNanos(1))
+            expect(1[nano(second)].toDuration() is_ equal to_ Duration.ofNanos(1))
 
     @Test
     fun toDuration_int_irregularUnitScale() =
-            expect(1[UnitScale(1e-7)(second)].toDuration() _is equal _to Duration.ofNanos(100))
+            expect(1[UnitScale(1e-7)(second)].toDuration() is_ equal to_ Duration.ofNanos(100))
 
     @Test
     fun toDuration_float() =
-            expect(1.000000001[second].toDuration() _is equal _to Duration.ofSeconds(1, 1))
+            expect(1.000000001[second].toDuration() is_ equal to_ Duration.ofSeconds(1, 1))
 
     @Test
     fun toDuration_long_bigDays() {
         val maxDays = 999999999L * 365L + 999999999L / 4L - 20547L * 365L + 20L
-        expect(maxDays[day].toDuration() _is equal _to Duration.ofDays(maxDays))
+        expect(maxDays[day].toDuration() is_ equal to_ Duration.ofDays(maxDays))
     }
 
     @Test
     fun fromDuration_seconds() {
         val duration = Duration.ofMinutes(1)
         val time = duration.toTime()
-        expect(time _is equal _to 1[minute])
+        expect(time is_ equal to_ 1[minute])
     }
 
     @Test
     fun fromDuration_nanos() {
         val duration = Duration.ofNanos(10)
         val time = duration.toTime()
-        expect(time _is equal _to 10[nano(second)])
+        expect(time is_ equal to_ 10[nano(second)])
     }
 
     @Test
@@ -156,14 +153,14 @@ class TimeTest {
         val time1 = LocalDateTime.of(0, 1, 1, 0, 0)
         val time2 = LocalDateTime.of(0, 1, 1, 0, 1)
         val difference = time2 - time1
-        expect(difference _is equal _to 1[minute])
+        expect(difference is_ equal to_ 1[minute])
     }
 
     @Test
     fun absolute() =
-            expect(1[minute].absolute _is equal _to LocalDateTime.of(0, 1, 1, 0, 1))
+            expect(1[minute].absolute is_ equal to_ LocalDateTime.of(0, 1, 1, 0, 1))
 
     @Test
     fun unitValue() =
-            expect(LocalDateTime.of(0, 1, 1, 0, 1).unitValue _is equal _to 1[minute])
+            expect(LocalDateTime.of(0, 1, 1, 0, 1).unitValue is_ equal to_ 1[minute])
 }

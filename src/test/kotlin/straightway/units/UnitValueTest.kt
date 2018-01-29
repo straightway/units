@@ -1,20 +1,17 @@
 /*
- * ***************************************************************************
  * Copyright 2016 github.com/straightway
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *  http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *  ***************************************************************************
- *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
 package straightway.units
 
@@ -23,13 +20,13 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import straightway.error.Panic
-import straightway.testing.flow._is
-import straightway.testing.flow._throw
-import straightway.testing.flow._to
+import straightway.testing.flow.Throw
 import straightway.testing.flow.does
 import straightway.testing.flow.equal
 import straightway.testing.flow.expect
+import straightway.testing.flow.is_
 import straightway.testing.flow.minus
+import straightway.testing.flow.to_
 
 class UnitValueTest {
 
@@ -76,7 +73,7 @@ class UnitValueTest {
     fun equals_sameQuantity_differentUnit() = assertFalse(2[testUnit] == 2[otherTestUnit])
 
     @Test
-    fun equals_sameQuantity_differentNumberTypes() = expect(11[testUnit] _is equal _to 1.1[deca(testUnit)])
+    fun equals_sameQuantity_differentNumberTypes() = expect(11[testUnit] is_ equal to_ 1.1[deca(testUnit)])
 
     @Suppress("ReplaceCallWithComparison")
     @Test
@@ -170,37 +167,37 @@ class UnitValueTest {
     fun convert_bothShifted_bothScaled() = assertEquals(1.0, 1[kilo(TestQuantity(uni, 1))][kilo(TestQuantity(uni, 1))].value)
 
     @Test
-    fun convert_compatibleUnit_noScale_value() = expect(1[(meter * second) / second][meter].value _is equal _to 1.0)
+    fun convert_compatibleUnit_noScale_value() = expect(1[(meter * second) / second][meter].value is_ equal to_ 1.0)
 
     @Test
-    fun convert_compatibleUnit_noScale_unit() = expect(1[(meter * second) / second][meter].unit _is equal _to meter)
+    fun convert_compatibleUnit_noScale_unit() = expect(1[(meter * second) / second][meter].unit is_ equal to_ meter)
 
     @Test
-    fun convert_compatibleUnit_scaled_value() = expect(1[(meter * second) / second][milli(meter)].value _is equal _to 1000.0)
+    fun convert_compatibleUnit_scaled_value() = expect(1[(meter * second) / second][milli(meter)].value is_ equal to_ 1000.0)
 
     @Test
-    fun convert_compatibleUnit_scaled_unit() = expect(1[(meter * second) / second][milli(meter)].unit _is equal _to milli(meter))
+    fun convert_compatibleUnit_scaled_unit() = expect(1[(meter * second) / second][milli(meter)].unit is_ equal to_ milli(meter))
 
     @Test
-    fun convert_compatibleUnit_siCorrected_value() = expect(1[(kilo(gram) * second) / second][gram].value _is equal _to 1000.0)
+    fun convert_compatibleUnit_siCorrected_value() = expect(1[(kilo(gram) * second) / second][gram].value is_ equal to_ 1000.0)
 
     @Test
-    fun convert_compatibleUnit_siCorrected_unit() = expect(1[(kilo(gram) * second) / second][gram].unit _is equal _to gram)
+    fun convert_compatibleUnit_siCorrected_unit() = expect(1[(kilo(gram) * second) / second][gram].unit is_ equal to_ gram)
 
     @Test
-    fun convert_compatibleUnit_shifted_value() = expect(1[(kelvin * second) / second][kilo(celsius)].value _is equal _to -0.27215)
+    fun convert_compatibleUnit_shifted_value() = expect(1[(kelvin * second) / second][kilo(celsius)].value is_ equal to_ -0.27215)
 
     @Test
-    fun convert_compatibleUnit_shifted_unit() = expect(1[(kelvin * second) / second][celsius].unit _is equal _to celsius)
+    fun convert_compatibleUnit_shifted_unit() = expect(1[(kelvin * second) / second][celsius].unit is_ equal to_ celsius)
 
     @Test
-    fun convert_compatibleUnit_withFactor_value() = expect(1[(pound * second) / second][kilo(gram)].value _is equal _to 0.45359237)
+    fun convert_compatibleUnit_withFactor_value() = expect(1[(pound * second) / second][kilo(gram)].value is_ equal to_ 0.45359237)
 
     @Test
-    fun convert_compatibleUnit_withFactor_unit() = expect(1[(pound * second) / second][kilo(gram)].unit _is equal _to kilo(gram))
+    fun convert_compatibleUnit_withFactor_unit() = expect(1[(pound * second) / second][kilo(gram)].unit is_ equal to_ kilo(gram))
 
     @Test
-    fun convert_incompatibleUnit() = expect({ 1[(meter * second) / second][mol] } does _throw - Panic::class)
+    fun convert_incompatibleUnit() = expect({ 1[(meter * second) / second][mol] } does Throw - Panic::class)
 
     @Test
     fun inFunctionParameter() {
@@ -218,51 +215,51 @@ class UnitValueTest {
     fun add() {
         val a = 1[mol]
         val b = 1[deca(mol)]
-        expect(a + b _is equal _to 11[mol])
+        expect(a + b is_ equal to_ 11[mol])
     }
 
     @Test
     fun sub() {
         val a = 1[mol]
         val b = 1[deca(mol)]
-        expect(a - b _is equal _to (-9)[mol])
+        expect(a - b is_ equal to_ (-9)[mol])
     }
 
     @Test
-    fun times_otherUnit() = expect(2[mol] * 3[second] _is equal _to 6[mol * second])
+    fun times_otherUnit() = expect(2[mol] * 3[second] is_ equal to_ 6[mol * second])
 
     @Test
-    fun times_scalar_first() = expect(3 * (2[mol]) _is equal _to 6[mol])
+    fun times_scalar_first() = expect(3 * (2[mol]) is_ equal to_ 6[mol])
 
     @Test
-    fun times_scalar_second() = expect((2[fahrenheit] * 3) _is equal _to 6[fahrenheit])
+    fun times_scalar_second() = expect((2[fahrenheit] * 3) is_ equal to_ 6[fahrenheit])
 
     @Test
-    fun div_otherUnit() = expect(6[mol] / 3[second] _is equal _to 2[mol / second])
+    fun div_otherUnit() = expect(6[mol] / 3[second] is_ equal to_ 2[mol / second])
 
     @Test
-    fun div_scalar_first() = expect(1.0 / (2.0[mol]) _is equal _to 0.5[Reciprocal(mol)])
+    fun div_scalar_first() = expect(1.0 / (2.0[mol]) is_ equal to_ 0.5[Reciprocal(mol)])
 
     @Test
-    fun div_scalar_second() = expect((2[fahrenheit] / 2) _is equal _to 1[fahrenheit])
+    fun div_scalar_second() = expect((2[fahrenheit] / 2) is_ equal to_ 1[fahrenheit])
 
     @Test
-    fun unary_minus() = expect((-1)[mol] _is equal _to -1[mol])
+    fun unary_minus() = expect((-1)[mol] is_ equal to_ -1[mol])
 
     @Test
-    fun unary_plus() = expect(1[mol] _is equal _to +1[mol])
+    fun unary_plus() = expect(1[mol] is_ equal to_ +1[mol])
 
     @Test
-    fun min() = expect(min(2[mol], 1[mol]) _is equal _to 1[mol])
+    fun min() = expect(min(2[mol], 1[mol]) is_ equal to_ 1[mol])
 
     @Test
-    fun max() = expect(max(2[mol], 1[mol]) _is equal _to 2[mol])
+    fun max() = expect(max(2[mol], 1[mol]) is_ equal to_ 2[mol])
 
     @Test
-    fun abs_positive() = expect(abs(2[mol]) _is equal _to 2[mol])
+    fun abs_positive() = expect(abs(2[mol]) is_ equal to_ 2[mol])
 
     @Test
-    fun abs_negative() = expect(abs(-2[mol]) _is equal _to 2[mol])
+    fun abs_negative() = expect(abs(-2[mol]) is_ equal to_ 2[mol])
 
     //region Private
 
