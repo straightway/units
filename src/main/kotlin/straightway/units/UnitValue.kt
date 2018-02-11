@@ -1,20 +1,17 @@
 /*
- * ***************************************************************************
  * Copyright 2016 github.com/straightway
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *  http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *  ***************************************************************************
- *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
 @file:Suppress("UNCHECKED_CAST")
 
@@ -44,8 +41,8 @@ data class UnitValue<TValue : Number, TQuantity : Quantity>(
         val unit: TQuantity) : Comparable<UnitValue<*, TQuantity>>, Serializable {
     val baseValue get() = value * unit.siScale.magnitude * unit.baseMagnitude + unit.valueShift
 
-    operator fun get(newUnit: TQuantity) =
-            UnitValue((baseValue - newUnit.valueShift) * newUnit.siScale.reciprocal.magnitude / newUnit.baseMagnitude, newUnit)
+    operator fun get(newUnit: TQuantity) = UnitValue(
+            (baseValue - newUnit.valueShift) * newUnit.siScale.reciprocal.magnitude / newUnit.baseMagnitude, newUnit)
 
     operator fun unaryMinus() = UnitValue(-value, unit)
     operator fun unaryPlus() = this
@@ -80,41 +77,3 @@ operator fun <TQuantity1 : Quantity, TQuantity2 : Quantity>
         UnitNumber<TQuantity1>.get(unit: TQuantity2) =
         if (this.unit.id != unit.id) throw Panic("Incompatible units: $unit for $this ")
         else (baseValue - unit.valueShift)[unit.withScale(unit.siScaleCorrection)][unit] as UnitNumber<TQuantity2>
-
-operator fun <TNum1 : Number, TNum2 : Number, TQuantity : Quantity>
-        UnitValue<TNum1, TQuantity>.plus(other: UnitValue<TNum2, TQuantity>) =
-        (baseValue + other.baseValue)[other.unit.withScale(uni)] as UnitValue<Number, TQuantity>
-
-operator fun <TNum1 : Number, TNum2 : Number, TQuantity : Quantity>
-        UnitValue<TNum1, TQuantity>.minus(other: UnitValue<TNum2, TQuantity>) =
-        (baseValue - other.baseValue)[other.unit.withScale(uni)] as UnitValue<Number, TQuantity>
-
-operator fun <TNum1 : Number, TNum2 : Number, TQuantity1 : Quantity, TQuantity2 : Quantity>
-        UnitValue<TNum1, TQuantity1>.times(other: UnitValue<TNum2, TQuantity2>) =
-        (baseValue * other.baseValue)[unit.withScale(uni) * other.unit.withScale(uni)]
-
-operator fun <TNum : Number, TQuantity : Quantity>
-        TNum.times(other: UnitValue<TNum, TQuantity>) =
-        UnitValue((this * other.value) as TNum, other.unit)
-
-operator fun <TNum : Number, TQuantity : Quantity>
-        UnitValue<TNum, TQuantity>.times(other: TNum) = other * this
-
-operator fun <TNum1 : Number, TNum2 : Number, TQuantity1 : Quantity, TQuantity2 : Quantity>
-        UnitValue<TNum1, TQuantity1>.div(other: UnitValue<TNum2, TQuantity2>) =
-        (baseValue / other.baseValue)[unit.withScale(uni) / other.unit.withScale(uni)]
-
-operator fun <TNum : Number, TQuantity : Quantity>
-        TNum.div(other: UnitValue<TNum, TQuantity>) =
-        UnitValue((this / other.value) as TNum, Reciprocal(other.unit))
-
-operator fun <TNum : Number, TQuantity : Quantity>
-        UnitValue<TNum, TQuantity>.div(other: TNum) =
-        UnitValue((value / other) as TNum, unit)
-
-fun <TQuantity : Quantity> min(vararg items: UnitNumber<TQuantity>) = items.min()!!
-
-fun <TQuantity : Quantity> max(vararg items: UnitNumber<TQuantity>) = items.max()!!
-
-fun <TNum : Number, TQuantity : Quantity> abs(value: UnitValue<TNum, TQuantity>) =
-        if (value.value < 0) -value else value

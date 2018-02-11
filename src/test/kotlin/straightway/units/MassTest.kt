@@ -1,20 +1,17 @@
 /*
- * ***************************************************************************
  * Copyright 2016 github.com/straightway
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *  http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *  ***************************************************************************
- *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
 package straightway.units
 
@@ -45,7 +42,8 @@ class MassTest {
     fun compare_ozAv_to_lbAv() = assertEquals(1[poundAv], 16[ounceAv])
 
     @Test
-    fun compare_lbAp_to_lbAv() = assertEquals((144.0 / 175.0)[poundAv].baseValue.toDouble(), 1.0[poundAp].baseValue.toDouble(), 1e-6)
+    fun compare_lbAp_to_lbAv() =
+            assertEquals((144.0 / 175.0)[poundAv].baseValue.toDouble(), 1.0[poundAp].baseValue.toDouble(), 1e-6)
 
     @Test
     fun compare_ozAp_to_lbAp() = assertEquals(1[poundAp], 12[ounceAp])

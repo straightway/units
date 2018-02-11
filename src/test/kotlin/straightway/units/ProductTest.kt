@@ -55,16 +55,21 @@ class ProductTest {
     fun toString_withComplexNumeratorAndDenominator() =
             assertEquals(
                     "Mmol*kK²/ms*m²",
-                    Product(kilo(kelvin), Product(mega(mol), Product(kilo(kelvin),
-                            Product(Reciprocal(meter), Product(Reciprocal(meter), Reciprocal(milli(second))))))).toString())
+                    Product(kilo(kelvin),
+                            Product(mega(mol),
+                                    Product(kilo(kelvin),
+                                            Product(Reciprocal(meter),
+                                                    Product(Reciprocal(meter),
+                                                            Reciprocal(milli(second))))))).toString())
 
     @Test
     fun id_dependsOnBothComponents() =
             assertNotEquals((second * meter).id, (mol * meter).id)
 
     @Test
-    fun id_dependsOnBothComponents_complexType() =
-            assertNotEquals((square(meter) * square(mol) / (meter * second)).id, (square(mol) * meter * second / cubic(second)).id)
+    fun id_dependsOnBothComponents_complexType() = assertNotEquals(
+            (square(meter) * square(mol) / (meter * second)).id,
+            (square(mol) * meter * second / cubic(second)).id)
 
     @Test
     fun id_isIndependentOfOrderOfFactors() =

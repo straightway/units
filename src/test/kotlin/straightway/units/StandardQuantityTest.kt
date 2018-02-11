@@ -46,17 +46,23 @@ class StandardQuantityTest {
     @Test
     fun uniqueId() = testedQuantities.forEach { sut = it; testUniqueId() }
 
-    private fun testEquality() = assertEquals(1.0[sut.quantity], 100.0[centi(sut.quantity)]) { "${sut.quantity}.equals" }
+    private fun testEquality() =
+            assertEquals(1.0[sut.quantity], 100.0[centi(sut.quantity)]) { "${sut.quantity}.equals" }
 
-    private fun testComparison() = assertTrue(1.0[sut.quantity] > 10.0[centi(sut.quantity)]) { "${sut.quantity}.compareTo" }
+    private fun testComparison() =
+            assertTrue(1.0[sut.quantity] > 10.0[centi(sut.quantity)]) { "${sut.quantity}.compareTo" }
 
-    private fun testToString_unscaled() = assertEquals("1 ${sut.stringRep}".trimEnd(), 1[sut.quantity].toString()) { "${sut.quantity}.toString" }
+    private fun testToString_unscaled() =
+            assertEquals("1 ${sut.stringRep}".trimEnd(), 1[sut.quantity].toString()) { "${sut.quantity}.toString" }
 
     private fun testToString_scaled() = assertEquals(
             if (sut.mustUseParenthesis) "1 m(${sut.stringRep})" else "1 m${sut.stringRep}",
             1[milli(sut.quantity)].toString()) { "${sut.quantity}.toString" }
 
-    private fun testTimesOne() = assertEquals(sut.quantity.timesScaleOf(kilo(one)), sut.quantity * kilo(one)) { "${sut.quantity}.times(one)" }
+    private fun testTimesOne() =
+            assertEquals(sut.quantity.timesScaleOf(kilo(one)), sut.quantity * kilo(one)) {
+                "${sut.quantity}.times(one)"
+            }
 
     private fun testId_unscaled() = assertEquals(sut.expectedId, sut.quantity.id) { "${sut.quantity}.id unscaled" }
 
@@ -68,7 +74,9 @@ class StandardQuantityTest {
             assertTrue(collectedUnitIds.size < allUnitIds.size)
             collectedUnitIds.add(sut.quantity.id)
         } else {
-            assertTrue(allUnitIds.contains(sut.quantity.id)) { "Quantity id of ${sut.quantity} Not found in allUnitIds" }
+            assertTrue(allUnitIds.contains(sut.quantity.id)) {
+                "Quantity id of ${sut.quantity} Not found in allUnitIds"
+            }
         }
     }
 

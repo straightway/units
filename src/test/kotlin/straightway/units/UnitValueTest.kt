@@ -122,13 +122,16 @@ class UnitValueTest {
     fun convert_scaleCorrected() = assertEquals(1, 1[siCorrectedTestUnit][siCorrectedTestUnit].value)
 
     @Test
-    fun convert_scaleCorrected_sourceScaled() = assertEquals(1_000, 1[kilo(siCorrectedTestUnit)][uni(siCorrectedTestUnit)].value)
+    fun convert_scaleCorrected_sourceScaled() =
+            assertEquals(1_000, 1[kilo(siCorrectedTestUnit)][uni(siCorrectedTestUnit)].value)
 
     @Test
-    fun convert_scaleCorrected_targetScaled() = assertEquals(1_000, 1[uni(siCorrectedTestUnit)][milli(siCorrectedTestUnit)].value)
+    fun convert_scaleCorrected_targetScaled() =
+            assertEquals(1_000, 1[uni(siCorrectedTestUnit)][milli(siCorrectedTestUnit)].value)
 
     @Test
-    fun convert_scaleCorrected_bothScaled() = assertEquals(1_000_000, 1[kilo(siCorrectedTestUnit)][milli(siCorrectedTestUnit)].value)
+    fun convert_scaleCorrected_bothScaled() =
+            assertEquals(1_000_000, 1[kilo(siCorrectedTestUnit)][milli(siCorrectedTestUnit)].value)
 
     @Test
     fun convert_sourceShifted() = assertEquals(2, 1[TestQuantity(uni, 1)][TestQuantity(uni, 0)].value)
@@ -140,61 +143,80 @@ class UnitValueTest {
     fun convert_bothShifted() = assertEquals(1, 1[TestQuantity(uni, 1)][TestQuantity(uni, 1)].value)
 
     @Test
-    fun convert_sourceShifted_sourceScaled() = assertEquals(1001, 1[kilo(TestQuantity(uni, 1))][TestQuantity(uni, 0)].value)
+    fun convert_sourceShifted_sourceScaled() =
+            assertEquals(1001, 1[kilo(TestQuantity(uni, 1))][TestQuantity(uni, 0)].value)
 
     @Test
-    fun convert_sourceShifted_targetScaled() = assertEquals(0.002, 1[TestQuantity(uni, 1)][kilo(TestQuantity(uni, 0))].value)
+    fun convert_sourceShifted_targetScaled() =
+            assertEquals(0.002, 1[TestQuantity(uni, 1)][kilo(TestQuantity(uni, 0))].value)
 
     @Test
-    fun convert_sourceShifted_bothScaled() = assertEquals(1.1, 1[deca(TestQuantity(uni, 1))][deca(TestQuantity(uni, 0))].value)
+    fun convert_sourceShifted_bothScaled() =
+            assertEquals(1.1, 1[deca(TestQuantity(uni, 1))][deca(TestQuantity(uni, 0))].value)
 
     @Test
-    fun convert_targetShifted_sourceScaled() = assertEquals(999, 1[kilo(TestQuantity(uni, 0))][TestQuantity(uni, 1)].value)
+    fun convert_targetShifted_sourceScaled() =
+            assertEquals(999, 1[kilo(TestQuantity(uni, 0))][TestQuantity(uni, 1)].value)
 
     @Test
-    fun convert_targetShifted_targetScaled() = assertEquals(0.001, 2[TestQuantity(uni, 0)][kilo(TestQuantity(uni, 1))].value)
+    fun convert_targetShifted_targetScaled() =
+            assertEquals(0.001, 2[TestQuantity(uni, 0)][kilo(TestQuantity(uni, 1))].value)
 
     @Test
-    fun convert_targetShifted_bothScaled() = assertEquals(0.999, 1[kilo(TestQuantity(uni, 0))][kilo(TestQuantity(uni, 1))].value)
+    fun convert_targetShifted_bothScaled() =
+            assertEquals(0.999, 1[kilo(TestQuantity(uni, 0))][kilo(TestQuantity(uni, 1))].value)
 
     @Test
-    fun convert_bothShifted_sourceScaled() = assertEquals(1000, 1[kilo(TestQuantity(uni, 1))][TestQuantity(uni, 1)].value)
+    fun convert_bothShifted_sourceScaled() =
+            assertEquals(1000, 1[kilo(TestQuantity(uni, 1))][TestQuantity(uni, 1)].value)
 
     @Test
-    fun convert_bothShifted_targetScaled() = assertEquals(0.002, 2[TestQuantity(uni, 1)][kilo(TestQuantity(uni, 1))].value)
+    fun convert_bothShifted_targetScaled() =
+            assertEquals(0.002, 2[TestQuantity(uni, 1)][kilo(TestQuantity(uni, 1))].value)
 
     @Test
-    fun convert_bothShifted_bothScaled() = assertEquals(1.0, 1[kilo(TestQuantity(uni, 1))][kilo(TestQuantity(uni, 1))].value)
+    fun convert_bothShifted_bothScaled() =
+            assertEquals(1.0, 1[kilo(TestQuantity(uni, 1))][kilo(TestQuantity(uni, 1))].value)
 
     @Test
-    fun convert_compatibleUnit_noScale_value() = expect(1[(meter * second) / second][meter].value is_ equal to_ 1.0)
+    fun convert_compatibleUnit_noScale_value() =
+            expect(1[(meter * second) / second][meter].value is_ equal to_ 1.0)
 
     @Test
-    fun convert_compatibleUnit_noScale_unit() = expect(1[(meter * second) / second][meter].unit is_ equal to_ meter)
+    fun convert_compatibleUnit_noScale_unit() =
+            expect(1[(meter * second) / second][meter].unit is_ equal to_ meter)
 
     @Test
-    fun convert_compatibleUnit_scaled_value() = expect(1[(meter * second) / second][milli(meter)].value is_ equal to_ 1000.0)
+    fun convert_compatibleUnit_scaled_value() =
+            expect(1[(meter * second) / second][milli(meter)].value is_ equal to_ 1000.0)
 
     @Test
-    fun convert_compatibleUnit_scaled_unit() = expect(1[(meter * second) / second][milli(meter)].unit is_ equal to_ milli(meter))
+    fun convert_compatibleUnit_scaled_unit() =
+            expect(1[(meter * second) / second][milli(meter)].unit is_ equal to_ milli(meter))
 
     @Test
-    fun convert_compatibleUnit_siCorrected_value() = expect(1[(kilo(gram) * second) / second][gram].value is_ equal to_ 1000.0)
+    fun convert_compatibleUnit_siCorrected_value() =
+            expect(1[(kilo(gram) * second) / second][gram].value is_ equal to_ 1000.0)
 
     @Test
-    fun convert_compatibleUnit_siCorrected_unit() = expect(1[(kilo(gram) * second) / second][gram].unit is_ equal to_ gram)
+    fun convert_compatibleUnit_siCorrected_unit() =
+            expect(1[(kilo(gram) * second) / second][gram].unit is_ equal to_ gram)
 
     @Test
-    fun convert_compatibleUnit_shifted_value() = expect(1[(kelvin * second) / second][kilo(celsius)].value is_ equal to_ -0.27215)
+    fun convert_compatibleUnit_shifted_value() =
+            expect(1[(kelvin * second) / second][kilo(celsius)].value is_ equal to_ -0.27215)
 
     @Test
-    fun convert_compatibleUnit_shifted_unit() = expect(1[(kelvin * second) / second][celsius].unit is_ equal to_ celsius)
+    fun convert_compatibleUnit_shifted_unit() =
+            expect(1[(kelvin * second) / second][celsius].unit is_ equal to_ celsius)
 
     @Test
-    fun convert_compatibleUnit_withFactor_value() = expect(1[(pound * second) / second][kilo(gram)].value is_ equal to_ 0.45359237)
+    fun convert_compatibleUnit_withFactor_value() =
+            expect(1[(pound * second) / second][kilo(gram)].value is_ equal to_ 0.45359237)
 
     @Test
-    fun convert_compatibleUnit_withFactor_unit() = expect(1[(pound * second) / second][kilo(gram)].unit is_ equal to_ kilo(gram))
+    fun convert_compatibleUnit_withFactor_unit() =
+            expect(1[(pound * second) / second][kilo(gram)].unit is_ equal to_ kilo(gram))
 
     @Test
     fun convert_incompatibleUnit() = expect({ 1[(meter * second) / second][mol] } does Throw - Panic::class)

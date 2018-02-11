@@ -13,18 +13,14 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-@file:Suppress("MagicNumber")
 
 package straightway.units
 
-import straightway.numbers.times
+import straightway.numbers.compareTo
 
-class Length constructor(symbol: String, scale: UnitScale, baseMagnitude: Number)
-    : QuantityBase(symbol, scale, baseMagnitude, { Length(symbol, it, baseMagnitude) })
+fun <TQuantity : Quantity> min(vararg items: UnitNumber<TQuantity>) = items.min()!!
 
-val meter = Length("m", uni, 1)
-val inch = Length("\"", uni, 0.0254)
-val foot = Length("ft", uni, 12 * inch.baseMagnitude)
-val yard = Length("yd", uni, 3 * foot.baseMagnitude)
-val mile = Length("mile", uni, 1760 * yard.baseMagnitude)
-val nauticalMile = Length("NM", uni, 1852)
+fun <TQuantity : Quantity> max(vararg items: UnitNumber<TQuantity>) = items.max()!!
+
+fun <TNum : Number, TQuantity : Quantity> abs(value: UnitValue<TNum, TQuantity>) =
+        if (value.value < 0) -value else value
