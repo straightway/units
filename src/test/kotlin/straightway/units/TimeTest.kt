@@ -26,91 +26,119 @@ import java.time.LocalDateTime
 
 class TimeTest {
     @Test
-    fun second_toMinute() = assertEquals(60[second], 1[minute])
+    fun second_toMinute() =
+            assertEquals(60[second], 1[minute])
 
     @Test
-    fun second_toHour() = assertEquals(3600[second], 1[hour])
+    fun second_toHour() =
+            assertEquals(3600[second], 1[hour])
 
     @Test
-    fun minute_toHour() = assertEquals(60[minute], 1[hour])
+    fun minute_toHour() =
+            assertEquals(60[minute], 1[hour])
 
     @Test
-    fun second_toDay() = assertEquals(86400[second], 1[day])
+    fun second_toDay() =
+            assertEquals(86400[second], 1[day])
 
     @Test
-    fun minute_toDay() = assertEquals(1.440[kilo(minute)], 1.0[day])
+    fun minute_toDay() =
+            assertEquals(1.440[kilo(minute)], 1.0[day])
 
     @Test
-    fun hour_toDay() = assertEquals(24[hour], 1[day])
+    fun hour_toDay() =
+            assertEquals(24[hour], 1[day])
 
     @Test
-    fun second_toWeek() = assertEquals(604800[second], 1[week])
+    fun second_toWeek() =
+            assertEquals(604800[second], 1[week])
 
     @Test
-    fun minute_toWeek() = assertEquals(10080[minute], 1[week])
+    fun minute_toWeek() =
+            assertEquals(10080[minute], 1[week])
 
     @Test
-    fun hour_toWeek() = assertEquals(168[hour], 1[week])
+    fun hour_toWeek() =
+            assertEquals(168[hour], 1[week])
 
     @Test
-    fun day_toWeek() = assertEquals(7[day], 1[week])
+    fun day_toWeek() =
+            assertEquals(7[day], 1[week])
 
     @Test
-    fun second_toYear() = assertEquals(31558432.5504[second], 1[year])
+    fun second_toYear() =
+            assertEquals(31558432.5504[second], 1[year])
 
     @Test
-    fun conversion() = assertEquals(1[minute], 60[second])
+    fun conversion() =
+            assertEquals(1[minute], 60[second])
 
     @Test
-    fun toString_second() = assertEquals("1 s", 1[second].toString())
+    fun toString_second() =
+            assertEquals("1 s", 1[second].toString())
 
     @Test
-    fun toString_minute() = assertEquals("1 min", 1[minute].toString())
+    fun toString_minute() =
+            assertEquals("1 min", 1[minute].toString())
 
     @Test
-    fun toString_hour() = assertEquals("1 h", 1[hour].toString())
+    fun toString_hour() =
+            assertEquals("1 h", 1[hour].toString())
 
     @Test
-    fun toString_day() = assertEquals("1 d", 1[day].toString())
+    fun toString_day() =
+            assertEquals("1 d", 1[day].toString())
 
     @Test
-    fun toString_week() = assertEquals("1 wk", 1[week].toString())
+    fun toString_week() =
+            assertEquals("1 wk", 1[week].toString())
 
     @Test
-    fun toString_year() = assertEquals("1 a", 1[year].toString())
+    fun toString_year() =
+            assertEquals("1 a", 1[year].toString())
 
     @Test
-    fun toString_scaled() = assertEquals("1 kwk", 1[kilo(week)].toString())
+    fun toString_scaled() =
+            assertEquals("1 kwk", 1[kilo(week)].toString())
 
     @Test
-    fun id_minute() = assertEquals(second.id, minute.id)
+    fun id_minute() =
+            assertEquals(second.id, minute.id)
 
     @Test
-    fun id_hour() = assertEquals(second.id, hour.id)
+    fun id_hour() =
+            assertEquals(second.id, hour.id)
 
     @Test
-    fun id_day() = assertEquals(second.id, day.id)
+    fun id_day() =
+            assertEquals(second.id, day.id)
 
     @Test
-    fun id_week() = assertEquals(second.id, week.id)
+    fun id_week() =
+            assertEquals(second.id, week.id)
 
     @Test
-    fun id_year() = assertEquals(second.id, year.id)
+    fun id_year() =
+            assertEquals(second.id, year.id)
 
     @Test
-    fun id_scaled() = assertEquals(second.id, kilo(week).id)
+    fun id_scaled() =
+            assertEquals(second.id, kilo(week).id)
 
     @Test
     fun add_toLocalDateTime() = expect(
-            LocalDateTime.of(0, 1, 1, 0, 0) + 1[minute] is_ equal to_ LocalDateTime.of(0, 1, 1, 0, 1))
+            LocalDateTime.of(0, 1, 1, 0, 0) + 1[minute] is_
+            equal to_ LocalDateTime.of(0, 1, 1, 0, 1))
 
     @Test
     fun add_toLocalDateTime_chained() = expect(
-            LocalDateTime.of(0, 1, 1, 0, 0) + 1[minute] + 1[minute] is_ equal to_ LocalDateTime.of(0, 1, 1, 0, 2))
+            LocalDateTime.of(0, 1, 1, 0, 0) + 1[minute] + 1[minute] is_
+            equal to_ LocalDateTime.of(0, 1, 1, 0, 2))
 
     @Test
     fun sub_fromLocalDateTime() = expect(
-            LocalDateTime.of(0, 1, 1, 0, 1) - 1[minute] is_ equal to_ LocalDateTime.of(0, 1, 1, 0, 0))
+            LocalDateTime.of(0, 1, 1, 0, 1) - 1[minute] is_
+            equal to_ LocalDateTime.of(0, 1, 1, 0, 0))
 
     @Test
     fun toDuration_int_seconds() =

@@ -37,7 +37,8 @@ private constructor(
     override val id: QuantityId
         get() = "${one.id}/${wrapped.id}"
     override val baseMagnitude: Number
-        get() = 1.0 / (wrapped.baseMagnitude * if (explicitSymbol == null) 1 else wrapped.siScale.magnitude)
+        get() = 1.0 / (wrapped.baseMagnitude *
+                if (explicitSymbol == null) 1 else wrapped.siScale.magnitude)
 
     override fun toString() =
             if (explicitSymbol == null)

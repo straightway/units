@@ -49,7 +49,9 @@ class ProductTest {
 
     @Test
     fun toString_separatesReciprokeFactors() =
-            assertEquals("1/km*ms", Product(Reciprocal(kilo(meter)), Reciprocal(milli(second))).toString())
+            assertEquals(
+                    "1/km*ms",
+                    Product(Reciprocal(kilo(meter)), Reciprocal(milli(second))).toString())
 
     @Test
     fun toString_withComplexNumeratorAndDenominator() =
@@ -60,7 +62,8 @@ class ProductTest {
                                     Product(kilo(kelvin),
                                             Product(Reciprocal(meter),
                                                     Product(Reciprocal(meter),
-                                                            Reciprocal(milli(second))))))).toString())
+                                                            Reciprocal(milli(second)))))))
+                            .toString())
 
     @Test
     fun id_dependsOnBothComponents() =
@@ -89,7 +92,9 @@ class ProductTest {
 
     @Test
     fun id_isCancelled_reciproke_reciproke() =
-            assertEquals(cubic(second).id, Product(second, Reciprocal(Reciprocal(square(second)))).id)
+            assertEquals(
+                    cubic(second).id,
+                    Product(second, Reciprocal(Reciprocal(square(second)))).id)
 
     @Test
     fun withSymbol_keepsShortId() =
@@ -189,7 +194,9 @@ class ProductTest {
 
     @Test
     fun baseMagnitude_ofBoth() =
-            assertEquals(inch.baseMagnitude * minute.baseMagnitude, Product(minute, inch).baseMagnitude)
+            assertEquals(
+                    inch.baseMagnitude * minute.baseMagnitude,
+                    Product(minute, inch).baseMagnitude)
 
     @Test
     fun normalizeToTypeOf_sameType() =
@@ -213,7 +220,9 @@ class ProductTest {
 
     @Test
     fun normalizeToTypeOf_keepsBaseMagnitude() =
-            assertEquals(inch.baseMagnitude, (inch * second normalizedToTypeOf second * meter).baseMagnitude)
+            assertEquals(
+                    inch.baseMagnitude,
+                    (inch * second normalizedToTypeOf second * meter).baseMagnitude)
 
     @Test
     fun times_createsProduct() =

@@ -15,8 +15,9 @@
  */
 
 /*
- * This file contains definitions for common quantities. Prefer using these definitions over defining
- * own quantities or just use the 'random' results of unit arithmetic (see samples for explanation).
+ * This file contains definitions for common quantities. Prefer using these definitions
+ * over defining own quantities or just use the 'random' results of unit arithmetic (see
+ * samples for explanation).
  */
 
 @file:Suppress("unused", "MagicNumber")
@@ -48,17 +49,21 @@ val katal = mol / second withSymbol "kat"
 typealias Capacitance = Product<
         Product<Product<Square<Time>, Square<Time>>, Square<ElectricCurrent>>,
         Reciprocal<Product<Mass, Square<Length>>>>
-val farad: Capacitance = square(second) * square(second) * square(ampere) / (kilo(gram) * square(meter)) withSymbol "F"
+val farad: Capacitance = square(second) * square(second) * square(ampere) /
+        (kilo(gram) * square(meter)) withSymbol "F"
 
 typealias ElectricCharge = Product<ElectricCurrent, Time>
 val coulomb: ElectricCharge = ampere * second withSymbol "C"
 
 typealias ElectricResistance =
-        Product<Product<Mass, Square<Length>>, Reciprocal<Product<Cubic<Time>, Square<ElectricCurrent>>>>
-val ohm: ElectricResistance = kilo(gram) * square(meter) / (cubic(second) * square(ampere)) withSymbol "Ω"
+        Product<Product<Mass, Square<Length>>,
+                Reciprocal<Product<Cubic<Time>, Square<ElectricCurrent>>>>
+val ohm: ElectricResistance = (kilo(gram) * square(meter) / (cubic(second) * square(ampere)))
+        .withSymbol("Ω")
 
 typealias ElectricalConductance =
-        Product<Product<Cubic<Time>, Square<ElectricCurrent>>, Reciprocal<Product<Mass, Square<Length>>>>
+        Product<Product<Cubic<Time>, Square<ElectricCurrent>>,
+                Reciprocal<Product<Mass, Square<Length>>>>
 val siemens = cubic(second) * square(ampere) / (kilo(gram) * square(meter)) withSymbol "S"
 
 typealias Energy = Product<Product<Mass, Square<Length>>, Reciprocal<Square<Time>>>
@@ -82,13 +87,19 @@ typealias Illuminance = Product<LuminousIntensity, Reciprocal<Square<Length>>>
 val lux: Illuminance = candela / square(meter) withSymbol "lx"
 
 typealias Inductance =
-        Product<Product<Mass, Square<Length>>, Reciprocal<Product<Square<Time>, Square<ElectricCurrent>>>>
-val henry: Inductance = kilo(gram) * square(meter) / (square(second) * square(ampere)) withSymbol "H"
+        Product<Product<Mass, Square<Length>>,
+                Reciprocal<Product<Square<Time>, Square<ElectricCurrent>>>>
+val henry: Inductance = (kilo(gram) * square(meter) / (square(second) * square(ampere)))
+        .withSymbol("H")
 
-typealias LuminousFlux = Product<LuminousIntensity, Product<Square<Length>, Reciprocal<Square<Length>>>>
+typealias LuminousFlux =
+        Product<LuminousIntensity, Product<Square<Length>,
+                Reciprocal<Square<Length>>>>
 val lumen: LuminousFlux = (candela * (square(meter) / square(meter))).withSymbol("lm")
 
-typealias MagneticFlux = Product<Product<Mass, Square<Length>>, Reciprocal<Product<Square<Time>, ElectricCurrent>>>
+typealias MagneticFlux =
+        Product<Product<Mass, Square<Length>>,
+                Reciprocal<Product<Square<Time>, ElectricCurrent>>>
 val weber: MagneticFlux = kilo(gram) * square(meter) / (square(second) * ampere) withSymbol "Wb"
 
 typealias MagneticFluxDensity = Product<Mass, Reciprocal<Product<Square<Time>, ElectricCurrent>>>
@@ -111,7 +122,9 @@ val knot: Speed = (nauticalMile / hour) withSymbol "knot"
 typealias SolidAngle = Product<Square<Length>, Reciprocal<Square<Length>>>
 val steradian = square(meter) / square(meter) withSymbol "sr"
 
-typealias Voltage = Product<Product<Mass, Square<Length>>, Reciprocal<Product<Cubic<Time>, ElectricCurrent>>>
+typealias Voltage =
+        Product<Product<Mass, Square<Length>>,
+                Reciprocal<Product<Cubic<Time>, ElectricCurrent>>>
 val volt: Voltage = kilo(gram) * square(meter) / (cubic(second) * ampere) withSymbol "V"
 
 typealias Volume = Cubic<Length>

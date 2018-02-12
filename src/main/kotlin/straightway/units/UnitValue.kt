@@ -42,7 +42,8 @@ data class UnitValue<TValue : Number, TQuantity : Quantity>(
     val baseValue get() = value * unit.siScale.magnitude * unit.baseMagnitude + unit.valueShift
 
     operator fun get(newUnit: TQuantity) = UnitValue(
-            (baseValue - newUnit.valueShift) * newUnit.siScale.reciprocal.magnitude / newUnit.baseMagnitude, newUnit)
+            (baseValue - newUnit.valueShift) * newUnit.siScale.reciprocal.magnitude /
+                    newUnit.baseMagnitude, newUnit)
 
     operator fun unaryMinus() = UnitValue(-value, unit)
     operator fun unaryPlus() = this
@@ -76,4 +77,5 @@ operator fun <TNum : Number, TQuantity : Quantity> TNum.get(unit: TQuantity) =
 operator fun <TQuantity1 : Quantity, TQuantity2 : Quantity>
         UnitNumber<TQuantity1>.get(unit: TQuantity2) =
         if (this.unit.id != unit.id) throw Panic("Incompatible units: $unit for $this ")
-        else (baseValue - unit.valueShift)[unit.withScale(unit.siScaleCorrection)][unit] as UnitNumber<TQuantity2>
+        else (baseValue - unit.valueShift)[unit.withScale(unit.siScaleCorrection)][unit]
+                as UnitNumber<TQuantity2>

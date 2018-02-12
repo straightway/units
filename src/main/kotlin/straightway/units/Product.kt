@@ -36,8 +36,13 @@ private constructor(
         private val explicitSymbol: String? = null,
         override val siScaleCorrection: UnitScale = uni)
     : Quantity {
-    constructor(left: QLeft, right: QRight)
-            : this(left, right, left.siScale * right.siScale, true, left.baseMagnitude * right.baseMagnitude)
+
+    constructor(left: QLeft, right: QRight) : this(
+            left,
+            right,
+            left.siScale * right.siScale,
+            true,
+            left.baseMagnitude * right.baseMagnitude)
 
     override val id: QuantityId
         get() = (listOf(idFactors.numerators(one.id)) + idFactors.denominators).joinToString("/")
@@ -72,8 +77,10 @@ private constructor(
 
     override fun toString() = when {
         isAutoScale && hasUniformRepresentation
-        -> (listOf(toStringFactors.numerators("1")) + toStringFactors.denominators).joinToString("/")
-        scale == uni -> explicitSymbol ?: toStringBase
+            -> (listOf(toStringFactors.numerators("1")) + toStringFactors.denominators)
+                    .joinToString("/")
+        scale == uni
+            -> explicitSymbol ?: toStringBase
         else -> if (explicitSymbol == null) "$scale($toStringBase)" else "$scale$explicitSymbol"
     }
 
@@ -85,7 +92,8 @@ private constructor(
         getFactorRepresentation { withScale(uni * UnitScale(baseMagnitude)).toString() }
     }
     private val toStringBase: String get() =
-            (listOf(toStringBaseFactors.numerators("1")) + toStringBaseFactors.denominators).joinToString("/")
+            (listOf(toStringBaseFactors.numerators("1")) + toStringBaseFactors.denominators)
+                    .joinToString("/")
     private val hasUniformRepresentation by lazy { toStringFactors.size == idFactors.size }
     private fun getFactorRepresentation(getter: Quantity.() -> String): List<String> {
         return sortedFactors(getter)

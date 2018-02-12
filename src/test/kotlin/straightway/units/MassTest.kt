@@ -21,36 +21,49 @@ import org.junit.jupiter.api.Test
 class MassTest {
 
     @Test
-    fun kiloGram_isBaseUnit() = assertEquals(1.0, 1.0[kilo(gram)].baseValue)
+    fun kiloGram_isBaseUnit() =
+            assertEquals(1.0, 1.0[kilo(gram)].baseValue)
 
     @Test
-    fun gram() = assertEquals(1e-3, 1.0[gram].baseValue)
+    fun gram() =
+            assertEquals(1e-3, 1.0[gram].baseValue)
 
     @Test
-    fun kilogram_toString_squared() = assertEquals("kg²", square(kilo(gram)).toString())
+    fun kilogram_toString_squared() =
+            assertEquals("kg²", square(kilo(gram)).toString())
 
     @Test
-    fun ton_is1000Kg() = assertEquals(1000[kilo(gram)], 1[ton])
+    fun ton_is1000Kg() =
+            assertEquals(1000[kilo(gram)], 1[ton])
 
     @Test
-    fun ton_hasBaseValue1000() = assertEquals(1000, 1[ton].baseValue)
+    fun ton_hasBaseValue1000() =
+            assertEquals(1000, 1[ton].baseValue)
 
     @Test
-    fun compare_lbAv_to_kg() = assertEquals(453.59237[gram], 1[poundAv])
+    fun compare_lbAv_to_kg() =
+            assertEquals(453.59237[gram], 1[poundAv])
 
     @Test
-    fun compare_ozAv_to_lbAv() = assertEquals(1[poundAv], 16[ounceAv])
+    fun compare_ozAv_to_lbAv() =
+            assertEquals(1[poundAv], 16[ounceAv])
 
     @Test
     fun compare_lbAp_to_lbAv() =
-            assertEquals((144.0 / 175.0)[poundAv].baseValue.toDouble(), 1.0[poundAp].baseValue.toDouble(), 1e-6)
+            assertEquals(
+                    (144.0 / 175.0)[poundAv].baseValue.toDouble(),
+                    1.0[poundAp].baseValue.toDouble(),
+                    1e-6)
 
     @Test
-    fun compare_ozAp_to_lbAp() = assertEquals(1[poundAp], 12[ounceAp])
+    fun compare_ozAp_to_lbAp() =
+            assertEquals(1[poundAp], 12[ounceAp])
 
     @Test
-    fun compare_lbs_to_lbAv() = assertEquals(1[pound], 1[poundAv])
+    fun compare_lbs_to_lbAv() =
+            assertEquals(1[pound], 1[poundAv])
 
     @Test
-    fun compare_oz_to_lb() = assertEquals(1[pound], 16[ounce])
+    fun compare_oz_to_lb() =
+            assertEquals(1[pound], 16[ounce])
 }

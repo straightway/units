@@ -47,13 +47,19 @@ class StandardQuantityTest {
     fun uniqueId() = testedQuantities.forEach { sut = it; testUniqueId() }
 
     private fun testEquality() =
-            assertEquals(1.0[sut.quantity], 100.0[centi(sut.quantity)]) { "${sut.quantity}.equals" }
+            assertEquals(1.0[sut.quantity], 100.0[centi(sut.quantity)]) {
+                "${sut.quantity}.equals"
+            }
 
     private fun testComparison() =
-            assertTrue(1.0[sut.quantity] > 10.0[centi(sut.quantity)]) { "${sut.quantity}.compareTo" }
+            assertTrue(1.0[sut.quantity] > 10.0[centi(sut.quantity)]) {
+                "${sut.quantity}.compareTo"
+            }
 
     private fun testToString_unscaled() =
-            assertEquals("1 ${sut.stringRep}".trimEnd(), 1[sut.quantity].toString()) { "${sut.quantity}.toString" }
+            assertEquals("1 ${sut.stringRep}".trimEnd(), 1[sut.quantity].toString()) {
+                "${sut.quantity}.toString"
+            }
 
     private fun testToString_scaled() = assertEquals(
             if (sut.mustUseParenthesis) "1 m(${sut.stringRep})" else "1 m${sut.stringRep}",
@@ -64,9 +70,13 @@ class StandardQuantityTest {
                 "${sut.quantity}.times(one)"
             }
 
-    private fun testId_unscaled() = assertEquals(sut.expectedId, sut.quantity.id) { "${sut.quantity}.id unscaled" }
+    private fun testId_unscaled() = assertEquals(sut.expectedId, sut.quantity.id) {
+        "${sut.quantity}.id unscaled"
+    }
 
-    private fun testId_scaled() = assertEquals(sut.expectedId, mega(sut.quantity).id) { "${sut.quantity}.id scaled" }
+    private fun testId_scaled() = assertEquals(sut.expectedId, mega(sut.quantity).id) {
+        "${sut.quantity}.id scaled"
+    }
 
     private fun testUniqueId() {
         if (sut.isQuantityRepresentative) {
@@ -85,8 +95,11 @@ class StandardQuantityTest {
             val stringRep: String,
             val isQuantityRepresentative: Boolean,
             val expectedId: QuantityId) {
-        constructor(quantity: Quantity, stringRep: String)
-                : this(quantity, stringRep, isQuantityRepresentative = false, expectedId = quantity.id)
+        constructor(quantity: Quantity, stringRep: String) : this(
+                quantity,
+                stringRep,
+                isQuantityRepresentative = false,
+                expectedId = quantity.id)
 
         val mustUseParenthesis
             get() = when (stringRep.last()) {
@@ -148,10 +161,12 @@ class StandardQuantityTest {
             TestedQuantity(day, "d") withSameIdAs second,
             TestedQuantity(week, "wk") withSameIdAs second,
             TestedQuantity(year, "a") withSameIdAs second,
-            TestedQuantity(newton, "N").quantityRepresentative() withSameIdAs kilo(gram) * meter / square(second),
+            TestedQuantity(newton, "N").quantityRepresentative()
+                    withSameIdAs kilo(gram) * meter / square(second),
             TestedQuantity(poundForce, "lbf") withSameIdAs kilo(gram) * meter / square(second),
             TestedQuantity(hertz, "Hz").quantityRepresentative() withSameIdAs one / second,
-            TestedQuantity(pascal, "Pa").quantityRepresentative() withSameIdAs newton / square(meter),
+            TestedQuantity(pascal, "Pa").quantityRepresentative()
+                    withSameIdAs newton / square(meter),
             TestedQuantity(bar, "bar") withSameIdAs pascal,
             TestedQuantity(psi, "psi") withSameIdAs pascal,
             TestedQuantity(joule, "J").quantityRepresentative() withSameIdAs newton * meter,
@@ -174,7 +189,10 @@ class StandardQuantityTest {
     //region Private
 
     private val collectedUnitIds = mutableSetOf<String>()
-    private val allUnitIds = testedQuantities.filter { it.isQuantityRepresentative }.map { it.quantity.id }.toHashSet()
+    private val allUnitIds =
+            testedQuantities
+                    .filter { it.isQuantityRepresentative }
+                    .map { it.quantity.id }.toHashSet()
 
     //endregion
 }
