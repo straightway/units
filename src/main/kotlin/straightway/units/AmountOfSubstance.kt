@@ -15,6 +15,9 @@
  */
 package straightway.units
 
+/**
+ * Magnitude for amount of substance.
+ */
 class AmountOfSubstance constructor(scale: UnitScale) :
         QuantityBase("mol", scale, { AmountOfSubstance(it) })
 

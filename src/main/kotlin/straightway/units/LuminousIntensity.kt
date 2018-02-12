@@ -15,6 +15,9 @@
  */
 package straightway.units
 
+/**
+ * Magnitude for luminous intensity.
+ */
 class LuminousIntensity constructor(scale: UnitScale) :
         QuantityBase("cd", scale, { LuminousIntensity(it) })
 

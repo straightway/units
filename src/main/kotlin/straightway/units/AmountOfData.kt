@@ -17,6 +17,9 @@
 
 package straightway.units
 
+/**
+ * Magnitude for amount of data
+ */
 class AmountOfData constructor(
     symbol: String,
     scale: UnitScale,

@@ -20,6 +20,9 @@ package straightway.units
 import straightway.numbers.div
 import straightway.numbers.times
 
+/**
+ * Magnitude for physical mass.
+ */
 class Mass constructor(
         scale: UnitScale,
         symbol: String,

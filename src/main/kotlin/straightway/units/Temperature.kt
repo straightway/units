@@ -17,6 +17,9 @@
 
 package straightway.units
 
+/**
+ * Magnitude for temperature.
+ */
 data class Temperature
 internal constructor(
         private val symbol: String,

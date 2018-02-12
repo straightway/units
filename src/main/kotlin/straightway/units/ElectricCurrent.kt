@@ -15,6 +15,9 @@
  */
 package straightway.units
 
+/**
+ * Magnitude for electric current.
+ */
 class ElectricCurrent constructor(scale: UnitScale) :
         QuantityBase("A", scale, { ElectricCurrent(it) })
 

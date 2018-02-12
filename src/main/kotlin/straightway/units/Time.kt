@@ -22,6 +22,9 @@ import straightway.numbers.times
 import java.time.Duration
 import java.time.LocalDateTime
 
+/**
+ * Magnitude for time.
+ */
 class Time constructor(
         symbol: String,
         scale: UnitScale,
