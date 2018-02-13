@@ -75,26 +75,44 @@ private constructor(
                     baseMagnitude.hashCode() xor
                     (explicitSymbol?.hashCode() ?: 0)
 
-    override fun toString() = when {
-        isAutoScale && hasUniformRepresentation
-            -> (listOf(toStringFactors.numerators("1")) + toStringFactors.denominators)
-                    .joinToString("/")
-        scale == uni
-            -> explicitSymbol ?: toStringBase
-        else -> if (explicitSymbol == null) "$scale($toStringBase)" else "$scale$explicitSymbol"
-    }
+    override fun toString() = stringRepresentation
 
     //region private
 
     private val idFactors by lazy { getFactorRepresentation { id } }
+
     private val toStringFactors by lazy { getFactorRepresentation { toString() } }
+
     private val toStringBaseFactors by lazy {
         getFactorRepresentation { withScale(uni * UnitScale(baseMagnitude)).toString() }
     }
-    private val toStringBase: String get() =
-            (listOf(toStringBaseFactors.numerators("1")) + toStringBaseFactors.denominators)
-                    .joinToString("/")
-    private val hasUniformRepresentation by lazy { toStringFactors.size == idFactors.size }
+
+    private val toStringBase: String
+        get() =
+                (listOf(toStringBaseFactors.numerators("1")) + toStringBaseFactors.denominators)
+                        .joinToString("/")
+
+    private val hasUniformRepresentation get() = toStringFactors.size == idFactors.size
+
+    private val fractionString
+        get() =
+                (listOf(toStringFactors.numerators("1")) + toStringFactors.denominators)
+                        .joinToString("/")
+
+    private val scaledString
+        get() =
+                if (explicitSymbol == null) "$scale($toStringBase)" else "$scale$explicitSymbol"
+
+    private val unscaledString get() = explicitSymbol ?: toStringBase
+
+    private val stringRepresentation by lazy {
+        when {
+            isAutoScale && hasUniformRepresentation -> fractionString
+            scale == uni -> unscaledString
+            else -> scaledString
+        }
+    }
+
     private fun getFactorRepresentation(getter: Quantity.() -> String): List<String> {
         return sortedFactors(getter)
                 .groupBy { it }
@@ -113,9 +131,11 @@ operator fun <QLeft : Quantity, QRight : Quantity> QLeft.div(right: QRight) =
         Product(this, Reciprocal(right))
 
 typealias Square<T> = Product<T, T>
+
 fun <T : Quantity> square(q: T) = Square(q, q)
 
 typealias Cubic<T> = Product<T, Square<T>>
+
 fun <T : Quantity> cubic(q: T) = Cubic(q, square(q))
 
 //region Private
