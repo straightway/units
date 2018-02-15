@@ -18,8 +18,7 @@ package straightway.units
 /**
  * The scalar quantity.
  */
-class One internal constructor(scale: UnitScale)
-    : QuantityBase("1", scale, { One(it) }) {
+class One internal constructor(scale: UnitScale) : QuantityBase("1", scale, { One(it) }) {
     operator fun <Q : Quantity> times(q: Q) =
             q.timesScaleOf(this)
 
@@ -41,7 +40,8 @@ class One internal constructor(scale: UnitScale)
 
     @JvmName("div_product_reciproke_reciproke")
     operator fun <QLeft : Quantity, QRight : Quantity> div(
-            q: Product<Reciprocal<QLeft>, Reciprocal<QRight>>) =
+            q: Product<Reciprocal<QLeft>, Reciprocal<QRight>>
+    ) =
             (q.left.wrapped * q.right.wrapped).timesScaleOf(this)
 }
 

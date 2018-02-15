@@ -21,10 +21,10 @@ package straightway.units
  * Magnitude for amount of data
  */
 class AmountOfData constructor(
-    symbol: String,
-    scale: UnitScale,
-    baseMagnitude: Number)
-    : QuantityBase(symbol, scale, baseMagnitude, { AmountOfData(symbol, it, baseMagnitude) })
+        symbol: String,
+        scale: UnitScale,
+        baseMagnitude: Number
+) : QuantityBase(symbol, scale, baseMagnitude, { AmountOfData(symbol, it, baseMagnitude) })
 
 val bit = AmountOfData("bit", uni, 1)
 val byte = AmountOfData("byte", uni, 8)

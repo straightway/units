@@ -28,8 +28,8 @@ import java.time.LocalDateTime
 class Time constructor(
         symbol: String,
         scale: UnitScale,
-        baseMagnitude: Number)
-    : QuantityBase(symbol, scale, baseMagnitude, { Time(symbol, it, baseMagnitude) }) {
+        baseMagnitude: Number
+) : QuantityBase(symbol, scale, baseMagnitude, { Time(symbol, it, baseMagnitude) }) {
     constructor(symbol: String, numberOfSeconds: Number) : this(symbol, uni, numberOfSeconds)
 
     val numberOfSeconds get() = scale.magnitude * baseMagnitude

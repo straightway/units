@@ -25,12 +25,13 @@ internal constructor(
         private val symbol: String,
         override val scale: UnitScale,
         private val factor: Number,
-        override val valueShift: Number)
-    : Quantity {
+        override val valueShift: Number
+) : Quantity {
     override val id: QuantityId by lazy { "${this::class.hashCode()}" }
     override val siScaleCorrection by lazy { UnitScale(factor).reciprocal }
     override fun withScale(scale: UnitScale): Quantity =
             Temperature(symbol, scale, factor, valueShift)
+
     override fun toString() = "$scale$symbol"
 }
 

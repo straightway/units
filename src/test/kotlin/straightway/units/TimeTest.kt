@@ -128,17 +128,17 @@ class TimeTest {
     @Test
     fun add_toLocalDateTime() = expect(
             LocalDateTime.of(0, 1, 1, 0, 0) + 1[minute] is_
-            equal to_ LocalDateTime.of(0, 1, 1, 0, 1))
+                    equal to_ LocalDateTime.of(0, 1, 1, 0, 1))
 
     @Test
     fun add_toLocalDateTime_chained() = expect(
             LocalDateTime.of(0, 1, 1, 0, 0) + 1[minute] + 1[minute] is_
-            equal to_ LocalDateTime.of(0, 1, 1, 0, 2))
+                    equal to_ LocalDateTime.of(0, 1, 1, 0, 2))
 
     @Test
     fun sub_fromLocalDateTime() = expect(
             LocalDateTime.of(0, 1, 1, 0, 1) - 1[minute] is_
-            equal to_ LocalDateTime.of(0, 1, 1, 0, 0))
+                    equal to_ LocalDateTime.of(0, 1, 1, 0, 0))
 
     @Test
     fun toDuration_int_seconds() =

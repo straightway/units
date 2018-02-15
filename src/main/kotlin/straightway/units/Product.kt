@@ -34,8 +34,8 @@ private constructor(
         private val isAutoScale: Boolean,
         override val baseMagnitude: Number,
         private val explicitSymbol: String? = null,
-        override val siScaleCorrection: UnitScale = uni)
-    : Quantity {
+        override val siScaleCorrection: UnitScale = uni
+) : Quantity {
 
     constructor(left: QLeft, right: QRight) : this(
             left,
@@ -89,19 +89,19 @@ private constructor(
 
     private val toStringBase: String
         get() =
-                (listOf(toStringBaseFactors.numerators("1")) + toStringBaseFactors.denominators)
-                        .joinToString("/")
+            (listOf(toStringBaseFactors.numerators("1")) + toStringBaseFactors.denominators)
+                    .joinToString("/")
 
     private val hasUniformRepresentation get() = toStringFactors.size == idFactors.size
 
     private val fractionString
         get() =
-                (listOf(toStringFactors.numerators("1")) + toStringFactors.denominators)
-                        .joinToString("/")
+            (listOf(toStringFactors.numerators("1")) + toStringFactors.denominators)
+                    .joinToString("/")
 
     private val scaledString
         get() =
-                if (explicitSymbol == null) "$scale($toStringBase)" else "$scale$explicitSymbol"
+            if (explicitSymbol == null) "$scale($toStringBase)" else "$scale$explicitSymbol"
 
     private val unscaledString get() = explicitSymbol ?: toStringBase
 

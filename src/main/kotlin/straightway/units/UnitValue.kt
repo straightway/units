@@ -26,9 +26,9 @@ import straightway.numbers.times
 import straightway.numbers.unaryMinus
 import java.io.Serializable
 
-/**
- * Convenience type for unit values with Number.
- */
+        /**
+         * Convenience type for unit values with Number.
+         */
 typealias UnitNumber<TQuantity> = UnitValue<*, TQuantity>
 
 /**
@@ -38,7 +38,8 @@ typealias UnitNumber<TQuantity> = UnitValue<*, TQuantity>
  */
 data class UnitValue<TValue : Number, TQuantity : Quantity>(
         val value: TValue,
-        val unit: TQuantity) : Comparable<UnitValue<*, TQuantity>>, Serializable {
+        val unit: TQuantity
+) : Comparable<UnitValue<*, TQuantity>>, Serializable {
     val baseValue get() = value * unit.siScale.magnitude * unit.baseMagnitude + unit.valueShift
 
     operator fun get(newUnit: TQuantity) = UnitValue(

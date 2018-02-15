@@ -76,8 +76,9 @@ fun main(args: Array<String>) {
 
     // Sometimes, an explicit normalization of the unit is required. See the definition of
     // the accelerationFromSpeedAndTime function for details.
-    println("acceleration for $speed and ${14[second]} is " +
-            "${accelerationFromSpeedAndTime(speed, 14[second])}")
+    println(
+            "acceleration for $speed and ${14[second]} is " +
+                    "${accelerationFromSpeedAndTime(speed, 14[second])}")
     // Out: acceleration for 12 m/s and 14 s is 0.8571428571428571 m/s²
 
     // Unit conversion can also be used to convert between metric and non-metric units, or

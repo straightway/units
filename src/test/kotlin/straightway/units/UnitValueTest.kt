@@ -339,20 +339,20 @@ class UnitValueTest {
     private fun bar(v: UnitValue<Number, Product<Length, Reciprocal<Time>>>) {
     }
 
-    private open class TestQuantity(scale: UnitScale, override val valueShift: Number)
-        : QuantityBase("TU", scale, { TestQuantity(it, valueShift) })
+    private open class TestQuantity(scale: UnitScale, override val valueShift: Number) :
+            QuantityBase("TU", scale, { TestQuantity(it, valueShift) })
 
     private val testUnit = TestQuantity(uni, 0)
 
-    private open class SiCorrectedTestQuantity(scale: UnitScale, override val valueShift: Number)
-        : QuantityBase("STU", scale, { SiCorrectedTestQuantity(it, valueShift) }) {
+    private open class SiCorrectedTestQuantity(scale: UnitScale, override val valueShift: Number) :
+            QuantityBase("STU", scale, { SiCorrectedTestQuantity(it, valueShift) }) {
         override val siScaleCorrection = milli
     }
 
     private val siCorrectedTestUnit = SiCorrectedTestQuantity(milli, 0)
 
-    private open class OtherTestQuantity(scale: UnitScale, override val valueShift: Number)
-        : QuantityBase("OTU", scale, { OtherTestQuantity(it, valueShift) })
+    private open class OtherTestQuantity(scale: UnitScale, override val valueShift: Number) :
+            QuantityBase("OTU", scale, { OtherTestQuantity(it, valueShift) })
 
     private val otherTestUnit = OtherTestQuantity(uni, 0)
 

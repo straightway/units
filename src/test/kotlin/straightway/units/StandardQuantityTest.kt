@@ -94,7 +94,8 @@ class StandardQuantityTest {
             val quantity: Quantity,
             val stringRep: String,
             val isQuantityRepresentative: Boolean,
-            val expectedId: QuantityId) {
+            val expectedId: QuantityId
+    ) {
         constructor(quantity: Quantity, stringRep: String) : this(
                 quantity,
                 stringRep,

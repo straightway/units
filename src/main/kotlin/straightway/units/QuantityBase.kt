@@ -25,8 +25,8 @@ abstract class QuantityBase(
         private val symbol: String,
         final override val scale: UnitScale,
         override val baseMagnitude: Number,
-        private val scaler: (UnitScale) -> QuantityBase)
-    : Quantity {
+        private val scaler: (UnitScale) -> QuantityBase
+) : Quantity {
     constructor(symbol: String, scale: UnitScale, scaler: (UnitScale) -> QuantityBase)
             : this(symbol, scale, 1, scaler)
 

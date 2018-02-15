@@ -57,11 +57,16 @@ class ProductTest {
     fun toString_withComplexNumeratorAndDenominator() =
             assertEquals(
                     "Mmol*kK²/ms*m²",
-                    Product(kilo(kelvin),
-                            Product(mega(mol),
-                                    Product(kilo(kelvin),
-                                            Product(Reciprocal(meter),
-                                                    Product(Reciprocal(meter),
+                    Product(
+                            kilo(kelvin),
+                            Product(
+                                    mega(mol),
+                                    Product(
+                                            kilo(kelvin),
+                                            Product(
+                                                    Reciprocal(meter),
+                                                    Product(
+                                                            Reciprocal(meter),
                                                             Reciprocal(milli(second)))))))
                             .toString())
 

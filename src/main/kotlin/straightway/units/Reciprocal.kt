@@ -29,8 +29,8 @@ private constructor(
         val wrapped: TBaseQuantity,
         override val scale: UnitScale,
         internal val explicitSymbol: String?,
-        private val isAutoScaled: Boolean)
-    : Quantity {
+        private val isAutoScaled: Boolean
+) : Quantity {
     constructor(wrapped: TBaseQuantity)
             : this(wrapped, wrapped.siScale.reciprocal, explicitSymbol = null, isAutoScaled = true)
 

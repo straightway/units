@@ -22,8 +22,8 @@ import straightway.numbers.times
 /**
  * Magnitude for physical length.
  */
-class Length constructor(symbol: String, scale: UnitScale, baseMagnitude: Number)
-    : QuantityBase(symbol, scale, baseMagnitude, { Length(symbol, it, baseMagnitude) })
+class Length constructor(symbol: String, scale: UnitScale, baseMagnitude: Number) :
+        QuantityBase(symbol, scale, baseMagnitude, { Length(symbol, it, baseMagnitude) })
 
 val meter = Length("m", uni, 1)
 val inch = Length("\"", uni, 0.0254)
