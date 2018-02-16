@@ -42,6 +42,8 @@ data class UnitScale(val prefix: String, val magnitude: Number) : Serializable {
     private val keyValuePair get() = Pair(key(magnitude), this)
 
     companion object {
+        const val serialVersionUID = 1L
+
         internal fun createScaleFor(magnitude: Number): UnitScale =
                 fixedScaleFor(magnitude) ?: predefine("[$magnitude]", magnitude)
 

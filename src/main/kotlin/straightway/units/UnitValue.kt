@@ -62,6 +62,10 @@ data class UnitValue<TValue : Number, TQuantity : Quantity>(
 
     override fun compareTo(other: UnitValue<*, TQuantity>) =
             baseValue.compareTo(other.baseValue)
+
+    companion object {
+        const val serialVersionUID = 1L
+    }
 }
 
 /**
