@@ -20,10 +20,9 @@ import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
 import straightway.error.Panic
 import straightway.numbers.times
-import straightway.testing.flow.Throw
 import straightway.testing.flow.does
 import straightway.testing.flow.expect
-import straightway.testing.flow.minus
+import straightway.testing.flow.throw_
 
 class ProductTest {
 
@@ -213,7 +212,7 @@ class ProductTest {
 
     @Test
     fun normalizeToTypeOf_otherType_throws() =
-            expect({ meter * second normalizedToTypeOf joule } does Throw - Panic::class)
+            expect({ meter * second normalizedToTypeOf joule } does throw_<Panic>())
 
     @Test
     fun normalizeToTypeOf_keepsSymbol() =

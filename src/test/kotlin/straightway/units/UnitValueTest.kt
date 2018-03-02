@@ -20,12 +20,11 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import straightway.error.Panic
-import straightway.testing.flow.Throw
 import straightway.testing.flow.does
 import straightway.testing.flow.equal
 import straightway.testing.flow.expect
 import straightway.testing.flow.is_
-import straightway.testing.flow.minus
+import straightway.testing.flow.throw_
 import straightway.testing.flow.to_
 
 class UnitValueTest {
@@ -253,7 +252,7 @@ class UnitValueTest {
 
     @Test
     fun convert_incompatibleUnit() =
-            expect({ 1[(meter * second) / second][mol] } does Throw - Panic::class)
+            expect({ 1[(meter * second) / second][mol] } does throw_<Panic>())
 
     @Test
     fun inFunctionParameter() {
