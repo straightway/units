@@ -16,9 +16,16 @@
 package straightway.units
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import straightway.expr.minus
+import straightway.testing.flow.Elements
+import straightway.testing.flow.Less
+import straightway.testing.flow.expect
+import straightway.testing.flow.has
+import straightway.testing.flow.Not
+import straightway.testing.flow.is_
+import straightway.testing.flow.than
 
 class StandardQuantityTest {
 
@@ -80,13 +87,11 @@ class StandardQuantityTest {
 
     private fun testUniqueId() {
         if (sut.isQuantityRepresentative) {
-            assertFalse(collectedUnitIds.contains(sut.quantity.id))
-            assertTrue(collectedUnitIds.size < allUnitIds.size)
+            expect(collectedUnitIds has Not - Elements(sut.quantity.id))
+            expect(collectedUnitIds.size is_ Less than allUnitIds.size)
             collectedUnitIds.add(sut.quantity.id)
         } else {
-            assertTrue(allUnitIds.contains(sut.quantity.id)) {
-                "Quantity id of ${sut.quantity} Not found in allUnitIds"
-            }
+            expect(allUnitIds has Elements(sut.quantity.id))
         }
     }
 

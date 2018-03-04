@@ -24,7 +24,7 @@ import straightway.testing.flow.does
 import straightway.testing.flow.equal
 import straightway.testing.flow.expect
 import straightway.testing.flow.is_
-import straightway.testing.flow.throw_
+import straightway.testing.flow.Throw
 import straightway.testing.flow.to_
 
 class UnitValueTest {
@@ -252,7 +252,7 @@ class UnitValueTest {
 
     @Test
     fun convert_incompatibleUnit() =
-            expect({ 1[(meter * second) / second][mol] } does throw_<Panic>())
+            expect({ 1[(meter * second) / second][mol] } does Throw.type<Panic>())
 
     @Test
     fun inFunctionParameter() {

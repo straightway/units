@@ -22,7 +22,7 @@ import straightway.error.Panic
 import straightway.numbers.times
 import straightway.testing.flow.does
 import straightway.testing.flow.expect
-import straightway.testing.flow.throw_
+import straightway.testing.flow.Throw
 
 class ProductTest {
 
@@ -212,7 +212,7 @@ class ProductTest {
 
     @Test
     fun normalizeToTypeOf_otherType_throws() =
-            expect({ meter * second normalizedToTypeOf joule } does throw_<Panic>())
+            expect({ meter * second normalizedToTypeOf joule } does Throw.type<Panic>())
 
     @Test
     fun normalizeToTypeOf_keepsSymbol() =
