@@ -29,5 +29,5 @@ To include this library in a gradle build, add
 Then you can simply configure in your dependencies:
 
     dependencies {
-        compile "straightway:units:0.2"
+        compile "straightway:units<version>"
     }
