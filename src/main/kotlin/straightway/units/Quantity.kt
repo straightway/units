@@ -26,23 +26,11 @@ typealias QuantityId = String
  * A quantity which can be attached to a number, forming a unit value. Instances
  * of quantities are units.
  */
-interface Quantity : Serializable {
+interface Quantity : Serializable, Scalable {
     /**
      * The identifier of the quantity. All "compatible" quantities have the same id.
      */
     val id: QuantityId
-
-    /**
-     * The scale of the quantity's unit.
-     */
-    val scale: UnitScale
-
-    /**
-     * The correction of the scale of the base SI unit.
-     * Some units do not have 'uni' as base scale. This is especially true for masses
-     * with the SI unit kilogram.
-     */
-    val siScaleCorrection: UnitScale get() = uni
 
     /**
      * Shift of the unit value compared to the default SI unit.
