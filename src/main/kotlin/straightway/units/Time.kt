@@ -31,7 +31,7 @@ class Time constructor(
         baseMagnitude: Number
 ) : QuantityBase(symbol, scale, baseMagnitude, { Time(symbol, it, baseMagnitude) }) {
     constructor(symbol: String, numberOfSeconds: Number) : this(symbol, uni, numberOfSeconds)
-
+    override val baseQuantity: Quantity get() = second
     val numberOfSeconds get() = scale.magnitude * baseMagnitude
 }
 

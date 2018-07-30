@@ -18,11 +18,22 @@
  */
 package straightway.units
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import straightway.numbers.times
+import straightway.testing.flow.Equal
+import straightway.testing.flow.EqualWithin
+import straightway.testing.flow.expect
+import straightway.testing.flow.is_
+import straightway.testing.flow.to_
 
 class TemperatureTest {
+
+    private companion object {
+        val diffOneFahrenheit = (1[fahrenheit] - 0[fahrenheit])[fahrenheit]
+    }
 
     @Test
     fun equals_celsius_kelvin1() =
@@ -109,4 +120,24 @@ class TemperatureTest {
     @Test
     fun conversion_fahrenheit_kelvin() =
             assertEquals(32.0, 273.15[kelvin][fahrenheit].value.toDouble(), 1e-6)
+
+    @Test
+    fun `add two fahrenheit`() =
+        Assertions.assertEquals(2[fahrenheit], 1[fahrenheit] + diffOneFahrenheit)
+
+    @Test
+    fun `subtract two fahrenheit`() =
+            Assertions.assertEquals(1[fahrenheit], 2[fahrenheit] - diffOneFahrenheit)
+
+    @Test
+    fun `multiply two fahrenheit`() =
+            expect((0[fahrenheit] * 0[fahrenheit]).value is_ EqualWithin(1e-6) to_ 0[fahrenheit][kelvin].value * 0[fahrenheit][kelvin].value)
+
+    @Test
+    fun `unit of two fahrenheit product`() =
+            expect((1[fahrenheit] * 1[fahrenheit]).unit is_ Equal to_ kelvin*kelvin)
+
+    @Test
+    fun `divide fahrenheit by fahrenheit`() =
+            Assertions.assertEquals(1[one], 1[fahrenheit] / 1[fahrenheit])
 }

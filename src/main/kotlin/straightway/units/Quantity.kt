@@ -48,6 +48,11 @@ interface Quantity : Serializable, Scalable {
      * Get a new unit with a different scale.
      */
     infix fun withScale(scale: UnitScale): Quantity
+
+    /**
+     * Gets the absolute base quantity, without scale, baseMagnitude or value shift.
+     */
+    val baseQuantity: Quantity get() = withScale(uni)
 }
 
 val Quantity.siScale get() = scale * siScaleCorrection.reciprocal

@@ -48,6 +48,9 @@ private constructor(
     override fun withScale(scale: UnitScale) =
             Reciprocal(wrapped, scale, explicitSymbol, isAutoScaled = false)
 
+    override val baseQuantity: Quantity
+        get() = one / wrapped.baseQuantity
+
     override fun equals(other: Any?) =
             other is Reciprocal<*> &&
                     wrapped.id == other.wrapped.id &&

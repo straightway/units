@@ -23,6 +23,10 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import straightway.numbers.div
+import straightway.testing.flow.Equal
+import straightway.testing.flow.expect
+import straightway.testing.flow.is_
+import straightway.testing.flow.to_
 
 class ReciprocalTest {
 
@@ -131,4 +135,8 @@ class ReciprocalTest {
     @Test
     fun baseMagnitude() =
             assertEquals(1 / inch.baseMagnitude, Reciprocal(inch).baseMagnitude)
+
+    @Test
+    fun `baseQuantity is reciprocal of baseQuantity`() =
+            expect((one / fahrenheit).baseQuantity is_ Equal to_ one / kelvin)
 }

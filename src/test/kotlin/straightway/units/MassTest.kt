@@ -15,6 +15,7 @@
  */
 package straightway.units
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -66,4 +67,24 @@ class MassTest {
     @Test
     fun compare_oz_to_lb() =
             assertEquals(1[pound], 16[ounce])
+
+    @Test
+    fun `add two lb av`() =
+            Assertions.assertEquals(2[poundAv], 1[poundAv] + 1[poundAv])
+
+    @Test
+    fun `subtract two lb av`() =
+            Assertions.assertEquals(1[poundAv], 2[poundAv] - 1[poundAv])
+
+    @Test
+    fun `multiply two lb av`() =
+            Assertions.assertEquals(1[poundAv*poundAv], 1[poundAv] * 1[poundAv])
+
+    @Test
+    fun `divide lb av by kg`() =
+            Assertions.assertEquals(0.45359237[one], 1[poundAv] / 1[kilo(gram)])
+
+    @Test
+    fun `divide kg by lb av`() =
+            Assertions.assertEquals((1.0/0.45359237)[one], 1.0[kilo(gram)] / 1.0[poundAv])
 }

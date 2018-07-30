@@ -19,6 +19,10 @@ package straightway.units
 
 /**
  * Magnitude for temperature.
+ *
+ * Please notice that arithmetic with temperature values that are not kelvin
+ * will yield strange results, because all calculations are done in kelvin. E.g.
+ * 1\[fahrenheit] + 1\[fahrenheit] != 2\[fahrenheit]!!
  */
 data class Temperature
 internal constructor(
@@ -31,6 +35,7 @@ internal constructor(
     override val siScaleCorrection by lazy { UnitScale(factor).reciprocal }
     override fun withScale(scale: UnitScale): Quantity =
             Temperature(symbol, scale, factor, valueShift)
+    override val baseQuantity: Quantity get() = kelvin
 
     override fun toString() = "$scale$symbol"
 }

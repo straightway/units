@@ -20,9 +20,12 @@ import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
 import straightway.error.Panic
 import straightway.numbers.times
+import straightway.testing.flow.Equal
 import straightway.testing.flow.does
 import straightway.testing.flow.expect
 import straightway.testing.flow.Throw
+import straightway.testing.flow.is_
+import straightway.testing.flow.to_
 
 class ProductTest {
 
@@ -307,4 +310,8 @@ class ProductTest {
     @Test
     fun pow4_toString_withScale() =
             assertEquals("km^4", Product(kilo(meter), cubic(kilo(meter))).toString())
+
+    @Test
+    fun `baseQuantity of product is product of factor baseQuantities`() =
+            expect((fahrenheit * hour).baseQuantity is_ Equal to_ kelvin * second)
 }

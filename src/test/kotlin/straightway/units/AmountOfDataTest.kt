@@ -42,4 +42,19 @@ class AmountOfDataTest {
 
     @Test
     fun conversion_bit_to_byte() = Assertions.assertEquals(1, 8[bit][byte].value)
+
+    @Test
+    fun `add two bytes`() = Assertions.assertEquals(2[byte], 1[byte] + 1[byte])
+
+    @Test
+    fun `subtract two bytes`() = Assertions.assertEquals(1[byte], 2[byte] - 1[byte])
+
+    @Test
+    fun `multiply two bytes`() = Assertions.assertEquals(1[byte*byte], 1[byte] * 1[byte])
+
+    @Test
+    fun `divide byte by bit`() = Assertions.assertEquals(8[one], 1[byte] / 1[bit])
+
+    @Test
+    fun `divide bit by byte`() = Assertions.assertEquals(0.125[one], 1.0[bit] / 1.0[byte])
 }

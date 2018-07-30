@@ -15,6 +15,7 @@
  */
 package straightway.units
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -126,4 +127,24 @@ class LengthTest {
     @Test
     fun conversion_km_to_nauticalMile() =
             assertEquals(1.0, 1.852[kilo(meter)][nauticalMile].value.toDouble(), 1e-6)
+
+    @Test
+    fun `add two nautical miles`() =
+            Assertions.assertEquals(2[nauticalMile], 1[nauticalMile] + 1[nauticalMile])
+
+    @Test
+    fun `subtract two nautical miles`() =
+            Assertions.assertEquals(1[nauticalMile], 2[nauticalMile] - 1[nauticalMile])
+
+    @Test
+    fun `multiply two nautical miles`() =
+            Assertions.assertEquals(1[nauticalMile*nauticalMile], 1[nauticalMile] * 1[nauticalMile])
+
+    @Test
+    fun `divide nautical miles by meter`() =
+            Assertions.assertEquals(1852[one], 1[nauticalMile] / 1[meter])
+
+    @Test
+    fun `divide meter by nautical miles`() =
+            Assertions.assertEquals((1.0/1852.0)[one], 1.0[meter] / 1.0[nauticalMile])
 }

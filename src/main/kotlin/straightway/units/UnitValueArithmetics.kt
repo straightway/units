@@ -16,6 +16,7 @@
 
 package straightway.units
 
+import straightway.error.Panic
 import straightway.numbers.div
 import straightway.numbers.minus
 import straightway.numbers.plus
@@ -24,16 +25,16 @@ import straightway.numbers.times
 @Suppress("UNCHECKED_CAST")
 operator fun <TNum1 : Number, TNum2 : Number, TQuantity : Quantity>
         UnitValue<TNum1, TQuantity>.plus(other: UnitValue<TNum2, TQuantity>) =
-        (baseValue + other.baseValue)[other.unit.withScale(uni)] as UnitValue<Number, TQuantity>
+        (baseValue + other.baseValue)[other.unit.baseQuantity] as UnitValue<Number, TQuantity>
 
 @Suppress("UNCHECKED_CAST")
 operator fun <TNum1 : Number, TNum2 : Number, TQuantity : Quantity>
         UnitValue<TNum1, TQuantity>.minus(other: UnitValue<TNum2, TQuantity>) =
-        (baseValue - other.baseValue)[other.unit.withScale(uni)] as UnitValue<Number, TQuantity>
+        (baseValue - other.baseValue)[other.unit.baseQuantity] as UnitValue<Number, TQuantity>
 
 operator fun <TNum1 : Number, TNum2 : Number, TQuantity1 : Quantity, TQuantity2 : Quantity>
         UnitValue<TNum1, TQuantity1>.times(other: UnitValue<TNum2, TQuantity2>) =
-        (baseValue * other.baseValue)[unit.withScale(uni) * other.unit.withScale(uni)]
+        (baseValue * other.baseValue)[unit.baseQuantity * other.unit.baseQuantity]
 
 @Suppress("UNCHECKED_CAST")
 operator fun <TNum : Number, TQuantity : Quantity>
@@ -45,7 +46,7 @@ operator fun <TNum : Number, TQuantity : Quantity>
 
 operator fun <TNum1 : Number, TNum2 : Number, TQuantity1 : Quantity, TQuantity2 : Quantity>
         UnitValue<TNum1, TQuantity1>.div(other: UnitValue<TNum2, TQuantity2>) =
-        (baseValue / other.baseValue)[unit.withScale(uni) / other.unit.withScale(uni)]
+        (baseValue / other.baseValue)[unit.baseQuantity / other.unit.baseQuantity]
 
 @Suppress("UNCHECKED_CAST")
 operator fun <TNum : Number, TQuantity : Quantity>

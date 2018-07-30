@@ -50,6 +50,9 @@ private constructor(
     override infix fun withScale(scale: UnitScale) =
             Product(left, right, scale, false, baseMagnitude, explicitSymbol)
 
+    override val baseQuantity: Quantity
+        get() = left.baseQuantity * right.baseQuantity
+
     infix fun withSymbol(newSymbol: String) =
             Product(left, right, uni, false, baseMagnitude, newSymbol, siScale.reciprocal)
 
