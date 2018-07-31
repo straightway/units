@@ -131,7 +131,8 @@ class TemperatureTest {
 
     @Test
     fun `multiply two fahrenheit`() =
-            expect((0[fahrenheit] * 0[fahrenheit]).value is_ EqualWithin(1e-6) to_ 0[fahrenheit][kelvin].value * 0[fahrenheit][kelvin].value)
+            expect((0[fahrenheit] * 0[fahrenheit]).value is_ EqualWithin(1e-6)
+                           to_ 0[fahrenheit][kelvin].value * 0[fahrenheit][kelvin].value)
 
     @Test
     fun `unit of two fahrenheit product`() =

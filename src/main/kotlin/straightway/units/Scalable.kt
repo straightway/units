@@ -34,4 +34,17 @@ interface Scalable {
      * with the SI unit kilogram.
      */
     val siScaleCorrection: UnitScale get() = uni
+
+    /**
+     * Shift of the derived unit value compared to the default SI unit.
+     * The value shift is added to SI unit value to get the derived value.
+     * Examples: Celsius, Fahrenheit
+     */
+    val valueShift: Number get() = 0
+
+    /**
+     * Define a factor for the magnitude of the unit.
+     * E.g. for the non metric units (pounds, feet, etc.).
+     */
+    val baseMagnitude: Number get() = 1
 }

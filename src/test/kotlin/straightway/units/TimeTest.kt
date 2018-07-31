@@ -15,7 +15,6 @@
  */
 package straightway.units
 
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import straightway.testing.flow.Equal
@@ -193,7 +192,6 @@ class TimeTest {
     fun unitValue() =
             expect(LocalDateTime.of(0, 1, 1, 0, 1).unitValue is_ Equal to_ 1[minute])
 
-
     @Test
     fun `add two minutes`() =
             expect(1[minute] + 1[minute] is_ Equal to_ 2[minute])
@@ -212,5 +210,5 @@ class TimeTest {
 
     @Test
     fun `divide second by minute`() =
-            expect(1.0[second] / 1.0[minute] is_ Equal to_ (1.0/60.0)[one])
+            expect(1.0[second] / 1.0[minute] is_ Equal to_ (1.0 / 60.0)[one])
 }

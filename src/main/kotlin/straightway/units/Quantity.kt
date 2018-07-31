@@ -33,32 +33,20 @@ interface Quantity : Serializable, Scalable {
     val id: QuantityId
 
     /**
-     * Shift of the unit value compared to the default SI unit.
-     * Examples: Celsius, Fahrenheit
+     * Gets the absolute base quantity, without scale, baseMagnitude or value shift.
      */
-    val valueShift: Number get() = 0
-
-    /**
-     * Define a factor for the magnitude of the unit.
-     * E.g. for the non metric units (pounds, feet, etc.).
-     */
-    val baseMagnitude: Number get() = 1
+    val baseQuantity: Quantity get() = withScale(uni)
 
     /**
      * Get a new unit with a different scale.
      */
     infix fun withScale(scale: UnitScale): Quantity
-
-    /**
-     * Gets the absolute base quantity, without scale, baseMagnitude or value shift.
-     */
-    val baseQuantity: Quantity get() = withScale(uni)
 }
 
-val Quantity.siScale get() = scale * siScaleCorrection.reciprocal
+val Scalable.siScale get() = scale * siScaleCorrection.reciprocal
 operator fun <Q : Quantity> Q.times(other: One) = this.timesScaleOf(other)
 @Suppress("UNCHECKED_CAST")
-fun <Q : Quantity> Q.timesScaleOf(other: Quantity) = when (other.siScale) {
+fun <Q : Quantity> Q.timesScaleOf(other: Scalable) = when (other.siScale) {
     uni -> this
     else -> this.withScale(scale * other.scale * other.siScaleCorrection.reciprocal) as Q
 }

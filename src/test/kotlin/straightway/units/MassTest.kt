@@ -86,5 +86,5 @@ class MassTest {
 
     @Test
     fun `divide kg by lb av`() =
-            Assertions.assertEquals((1.0/0.45359237)[one], 1.0[kilo(gram)] / 1.0[poundAv])
+            Assertions.assertEquals((1.0 / 0.45359237)[one], 1.0[kilo(gram)] / 1.0[poundAv])
 }

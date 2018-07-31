@@ -16,7 +16,6 @@
 
 package straightway.units
 
-import straightway.error.Panic
 import straightway.numbers.div
 import straightway.numbers.minus
 import straightway.numbers.plus

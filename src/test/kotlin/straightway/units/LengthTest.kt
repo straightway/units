@@ -146,5 +146,5 @@ class LengthTest {
 
     @Test
     fun `divide meter by nautical miles`() =
-            Assertions.assertEquals((1.0/1852.0)[one], 1.0[meter] / 1.0[nauticalMile])
+            Assertions.assertEquals((1.0 / 1852.0)[one], 1.0[meter] / 1.0[nauticalMile])
 }
