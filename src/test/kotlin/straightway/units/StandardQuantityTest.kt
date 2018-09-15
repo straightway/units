@@ -192,7 +192,7 @@ class StandardQuantityTest {
             TestedQuantity(sievert, "Sv") withSameIdAs joule / kilo(gram),
             TestedQuantity(katal, "kat").quantityRepresentative() withSameIdAs mol / second)
 
-    //region Private
+    // region Private
 
     private val collectedUnitIds = mutableSetOf<String>()
     private val allUnitIds =
@@ -200,5 +200,5 @@ class StandardQuantityTest {
                     .filter { it.isQuantityRepresentative }
                     .map { it.quantity.id }.toHashSet()
 
-    //endregion
+    // endregion
 }

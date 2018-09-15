@@ -80,7 +80,7 @@ private constructor(
 
     override fun toString() = stringRepresentation
 
-    //region private
+    // region private
 
     private val idFactors by lazy { getFactorRepresentation { id } }
 
@@ -124,7 +124,7 @@ private constructor(
                 .sorted()
     }
 
-    //endregion
+    // endregion
 }
 
 operator fun <QLeft : Quantity, QRight : Quantity> QLeft.times(right: QRight) =
@@ -141,7 +141,7 @@ typealias Cubic<T> = Product<T, Square<T>>
 
 fun <T : Quantity> cubic(q: T) = Cubic(q, square(q))
 
-//region Private
+// region Private
 
 @Suppress("MagicNumber")
 private infix fun String.pow(exponent: Int) =
@@ -185,4 +185,4 @@ private val Map.Entry<String, List<String>>.reciproke get() = key.reciproke
 private val String.reciproke get() = if (this.id) substring(2) else "1/$this"
 private val String.id get() = startsWith("1/")
 
-//endregion
+// endregion

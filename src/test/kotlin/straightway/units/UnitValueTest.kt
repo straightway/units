@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright 2016 github.com/straightway
  *
  *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -328,7 +328,7 @@ class UnitValueTest {
     fun abs_negative() =
             expect(abs(-2[mol]) is_ Equal to_ 2[mol])
 
-    //region Private
+    // region Private
 
     @Suppress("UNUSED_PARAMETER")
     private fun foo(v: UnitValue<Number, TestQuantity>) {
@@ -355,5 +355,5 @@ class UnitValueTest {
 
     private val otherTestUnit = OtherTestQuantity(uni, 0)
 
-    //endregion
+    // endregion
 }
