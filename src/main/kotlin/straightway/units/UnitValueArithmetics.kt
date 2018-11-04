@@ -43,6 +43,10 @@ operator fun <TNum : Number, TQuantity : Quantity>
 operator fun <TNum : Number, TQuantity : Quantity>
         UnitValue<TNum, TQuantity>.times(other: TNum) = other * this
 
+@JvmName("unitNumberTimes")
+operator fun <TQuantity : Quantity> UnitNumber<TQuantity>.times(x: Number) =
+        UnitValue(value * x, unit)
+
 operator fun <TNum1 : Number, TNum2 : Number, TQuantity1 : Quantity, TQuantity2 : Quantity>
         UnitValue<TNum1, TQuantity1>.div(other: UnitValue<TNum2, TQuantity2>) =
         (baseValue / other.baseValue)[unit.baseQuantity / other.unit.baseQuantity]
@@ -56,3 +60,7 @@ operator fun <TNum : Number, TQuantity : Quantity>
 operator fun <TNum : Number, TQuantity : Quantity>
         UnitValue<TNum, TQuantity>.div(other: TNum) =
         UnitValue((value / other) as TNum, unit)
+
+@JvmName("unitNumberDiv")
+operator fun <TQuantity : Quantity> UnitNumber<TQuantity>.div(x: Number) =
+        UnitValue(value / x, unit)

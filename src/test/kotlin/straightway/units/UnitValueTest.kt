@@ -328,6 +328,20 @@ class UnitValueTest {
     fun abs_negative() =
             expect(abs(-2[mol]) is_ Equal to_ 2[mol])
 
+    @Test
+    fun `multiplication without fixed number type`() {
+        val unitValue = 3[hour]
+        val factor: Number = 2
+        expect(unitValue * factor is_ Equal to_ 6[hour])
+    }
+
+    @Test
+    fun `division without fixed number type`() {
+        val unitValue = 3.0[hour]
+        val factor: Number = 2
+        expect(unitValue / factor is_ Equal to_ 1.5[hour])
+    }
+
     // region Private
 
     @Suppress("UNUSED_PARAMETER")
