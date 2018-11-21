@@ -20,7 +20,9 @@ package straightway.units
 import straightway.numbers.minus
 import straightway.numbers.times
 import java.time.Duration
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 /**
  * Magnitude for time.
@@ -62,3 +64,5 @@ fun Duration.toTime() = this.nano[nano(second)] + this.seconds[second]
 private val zeroTime = LocalDateTime.of(0, 1, 1, 0, 0)
 val UnitValue<*, Time>.absolute get() = zeroTime + this
 val LocalDateTime.unitValue: UnitValue<*, Time> get() = this - zeroTime
+
+fun LocalDate.at(time: UnitNumber<Time>) = LocalDateTime.of(this, LocalTime.MIDNIGHT) + time

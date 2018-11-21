@@ -22,6 +22,7 @@ import straightway.testing.flow.expect
 import straightway.testing.flow.is_
 import straightway.testing.flow.to_
 import java.time.Duration
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 class TimeTest {
@@ -211,4 +212,9 @@ class TimeTest {
     @Test
     fun `divide second by minute`() =
             expect(1.0[second] / 1.0[minute] is_ Equal to_ (1.0 / 60.0)[one])
+
+    @Test
+    fun `at adds a time amount to a day`() =
+            expect(LocalDate.of(2013, 5, 6).at(8[hour] + 30[minute])
+                    is_ Equal to_ LocalDateTime.of(2013, 5, 6, 8, 30, 0))
 }
