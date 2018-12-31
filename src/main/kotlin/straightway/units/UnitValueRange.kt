@@ -15,15 +15,12 @@
  */
 package straightway.units
 
-import java.io.Serializable
-
 /**
- * A value with a unit.
+ * Range between two unit values.
  */
-interface UnitValue<TQuantity : Quantity>
-    : Comparable<UnitValue<TQuantity>>, Serializable, Rangeable<UnitValue<TQuantity>> {
-    val value: Number
-    val unit: TQuantity
-    val baseValue: Number
-    operator fun get(newUnit: TQuantity): UnitValue<TQuantity>
+data class UnitValueRange<TQuantity : Quantity>(
+        override val start: UnitValue<TQuantity>,
+        override val endInclusive: UnitValue<TQuantity>
+) : ClosedRange<UnitValue<TQuantity>> {
+    override fun toString() = "$start..$endInclusive"
 }

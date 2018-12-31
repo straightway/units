@@ -15,15 +15,9 @@
  */
 package straightway.units
 
-import java.io.Serializable
-
 /**
- * A value with a unit.
+ * An object for which a range can be constructed.
  */
-interface UnitValue<TQuantity : Quantity>
-    : Comparable<UnitValue<TQuantity>>, Serializable, Rangeable<UnitValue<TQuantity>> {
-    val value: Number
-    val unit: TQuantity
-    val baseValue: Number
-    operator fun get(newUnit: TQuantity): UnitValue<TQuantity>
+interface Rangeable<T : Comparable<T>> {
+    operator fun rangeTo(endInclusive: T): ClosedRange<T>
 }

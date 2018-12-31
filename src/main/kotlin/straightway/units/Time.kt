@@ -44,25 +44,25 @@ val day = Time("d", 24 * hour.numberOfSeconds.toInt())
 val week = Time("wk", 7 * day.numberOfSeconds.toInt())
 val year = Time("a", 31558432.5504)
 
-fun UnitValue<*, Time>.toDuration(): Duration {
+fun UnitValue<Time>.toDuration(): Duration {
     val seconds = this.baseValue.toLong()
     val nanos = ((this.baseValue - seconds) * 1_000_000_000).toLong()
     return Duration.ofSeconds(seconds, nanos)
 }
 
-operator fun <T : Number> LocalDateTime.plus(amount: UnitValue<T, Time>) =
+operator fun LocalDateTime.plus(amount: UnitValue<Time>) =
         (this + amount.toDuration())!!
 
-operator fun <T : Number> LocalDateTime.minus(amount: UnitValue<T, Time>) =
+operator fun LocalDateTime.minus(amount: UnitValue<Time>) =
         (this - amount.toDuration())!!
 
-operator fun LocalDateTime.minus(other: LocalDateTime): UnitNumber<Time> =
+operator fun LocalDateTime.minus(other: LocalDateTime): UnitValue<Time> =
         Duration.between(other, this).toTime()
 
 fun Duration.toTime() = this.nano[nano(second)] + this.seconds[second]
 
 private val zeroTime = LocalDateTime.of(0, 1, 1, 0, 0)
-val UnitValue<*, Time>.absolute get() = zeroTime + this
-val LocalDateTime.unitValue: UnitValue<*, Time> get() = this - zeroTime
+val UnitValue<Time>.absolute get() = zeroTime + this
+val LocalDateTime.unitValue: UnitValue<Time> get() = this - zeroTime
 
-fun LocalDate.at(time: UnitNumber<Time>) = LocalDateTime.of(this, LocalTime.MIDNIGHT) + time
+fun LocalDate.at(time: UnitValue<Time>) = LocalDateTime.of(this, LocalTime.MIDNIGHT) + time

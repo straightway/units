@@ -20,47 +20,42 @@ import straightway.numbers.div
 import straightway.numbers.minus
 import straightway.numbers.plus
 import straightway.numbers.times
+import straightway.numbers.unaryMinus
+
+operator fun <TQuantity : Quantity> UnitValue<TQuantity>.unaryPlus() =
+        this
+operator fun <TQuantity : Quantity> UnitValue<TQuantity>.unaryMinus(): UnitValue<TQuantity> =
+        (-value)[unit]
 
 @Suppress("UNCHECKED_CAST")
-operator fun <TNum1 : Number, TNum2 : Number, TQuantity : Quantity>
-        UnitValue<TNum1, TQuantity>.plus(other: UnitValue<TNum2, TQuantity>) =
-        (baseValue + other.baseValue)[other.unit.baseQuantity] as UnitValue<Number, TQuantity>
+operator fun <TQuantity : Quantity> UnitValue<TQuantity>.plus(other: UnitValue<TQuantity>) =
+        (baseValue + other.baseValue)[other.unit.baseQuantity as TQuantity]
 
 @Suppress("UNCHECKED_CAST")
-operator fun <TNum1 : Number, TNum2 : Number, TQuantity : Quantity>
-        UnitValue<TNum1, TQuantity>.minus(other: UnitValue<TNum2, TQuantity>) =
-        (baseValue - other.baseValue)[other.unit.baseQuantity] as UnitValue<Number, TQuantity>
-
-operator fun <TNum1 : Number, TNum2 : Number, TQuantity1 : Quantity, TQuantity2 : Quantity>
-        UnitValue<TNum1, TQuantity1>.times(other: UnitValue<TNum2, TQuantity2>) =
-        (baseValue * other.baseValue)[unit.baseQuantity * other.unit.baseQuantity]
+operator fun <TQuantity : Quantity>
+        UnitValue<TQuantity>.minus(other: UnitValue<TQuantity>) =
+        (baseValue - other.baseValue)[other.unit.baseQuantity as TQuantity]
 
 @Suppress("UNCHECKED_CAST")
-operator fun <TNum : Number, TQuantity : Quantity>
-        TNum.times(other: UnitValue<TNum, TQuantity>) =
-        UnitValue((this * other.value) as TNum, other.unit)
+operator fun <TQuantity1 : Quantity, TQuantity2 : Quantity>
+        UnitValue<TQuantity1>.times(other: UnitValue<TQuantity2>) =
+        (baseValue * other.baseValue)[unit.baseQuantity as TQuantity1 *
+                                      other.unit.baseQuantity as TQuantity2]
 
-operator fun <TNum : Number, TQuantity : Quantity>
-        UnitValue<TNum, TQuantity>.times(other: TNum) = other * this
+operator fun <TNum : Number, TQuantity : Quantity> TNum.times(other: UnitValue<TQuantity>) =
+        UnitValueImpl(this * other.value, other.unit)
 
-@JvmName("unitNumberTimes")
-operator fun <TQuantity : Quantity> UnitNumber<TQuantity>.times(x: Number) =
-        UnitValue(value * x, unit)
-
-operator fun <TNum1 : Number, TNum2 : Number, TQuantity1 : Quantity, TQuantity2 : Quantity>
-        UnitValue<TNum1, TQuantity1>.div(other: UnitValue<TNum2, TQuantity2>) =
-        (baseValue / other.baseValue)[unit.baseQuantity / other.unit.baseQuantity]
+operator fun <TQuantity : Quantity> UnitValue<TQuantity>.times(x: Number) =
+        UnitValueImpl(value * x, unit)
 
 @Suppress("UNCHECKED_CAST")
-operator fun <TNum : Number, TQuantity : Quantity>
-        TNum.div(other: UnitValue<TNum, TQuantity>) =
-        UnitValue((this / other.value) as TNum, Reciprocal(other.unit))
+operator fun <TQuantity1 : Quantity, TQuantity2 : Quantity>
+        UnitValue<TQuantity1>.div(other: UnitValue<TQuantity2>) =
+        (baseValue / other.baseValue)[unit.baseQuantity as TQuantity1 /
+                                      other.unit.baseQuantity as TQuantity2]
 
-@Suppress("UNCHECKED_CAST")
-operator fun <TNum : Number, TQuantity : Quantity>
-        UnitValue<TNum, TQuantity>.div(other: TNum) =
-        UnitValue((value / other) as TNum, unit)
+operator fun <TNum : Number, TQuantity : Quantity> TNum.div(other: UnitValue<TQuantity>) =
+        UnitValueImpl(this / other.value, Reciprocal(other.unit))
 
-@JvmName("unitNumberDiv")
-operator fun <TQuantity : Quantity> UnitNumber<TQuantity>.div(x: Number) =
-        UnitValue(value / x, unit)
+operator fun <TQuantity : Quantity> UnitValue<TQuantity>.div(x: Number) =
+        UnitValueImpl(value / x, unit)

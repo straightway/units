@@ -27,15 +27,15 @@ import straightway.testing.flow.is_
 import straightway.testing.flow.Throw
 import straightway.testing.flow.to_
 
-class UnitValueTest {
+class UnitValueImplTest {
 
     @Test
     fun construction_value() =
-            assertEquals(2, UnitValue(2, testUnit).value)
+            assertEquals(2, UnitValueImpl(2, testUnit).value)
 
     @Test
     fun construction_unit() =
-            assertEquals(testUnit, UnitValue(2, testUnit).unit)
+            assertEquals(testUnit, UnitValueImpl(2, testUnit).unit)
 
     @Test
     fun construction_withIndexer_value() =
@@ -345,11 +345,11 @@ class UnitValueTest {
     // region Private
 
     @Suppress("UNUSED_PARAMETER")
-    private fun foo(v: UnitValue<Number, TestQuantity>) {
+    private fun foo(v: UnitValue<TestQuantity>) {
     }
 
     @Suppress("UNUSED_PARAMETER")
-    private fun bar(v: UnitValue<Number, Product<Length, Reciprocal<Time>>>) {
+    private fun bar(v: UnitValue<Product<Length, Reciprocal<Time>>>) {
     }
 
     private open class TestQuantity(scale: UnitScale, override val valueShift: Number) :

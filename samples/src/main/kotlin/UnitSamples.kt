@@ -19,7 +19,6 @@ import straightway.units.Acceleration
 import straightway.units.Length
 import straightway.units.Speed
 import straightway.units.Time
-import straightway.units.UnitNumber
 import straightway.units.UnitValue
 import straightway.units.centi
 import straightway.units.div
@@ -81,7 +80,7 @@ fun main(args: Array<String>) {
         // Out: 3[second][kelvin] throws Panic: Incompatible units: K for 3 s
     }
 
-    // It is possible to access the value and the base value of a UnitValue:
+    // It is possible to access the value and the base value of a UnitValueImpl:
     println("The value of ${2[kilo(meter)]} is ${2[kilo(meter)].value}")
     // Out: The value of 2 km is 2
 
@@ -98,7 +97,7 @@ fun main(args: Array<String>) {
 
     // It is possible to constrain the number type for a unit value. If you e.g. specify
     // Int as number type, all calculations are done with integer. Example:
-    val intLength: UnitValue<Int, Length> = 15[meter]
+    val intLength: UnitValue<Length> = 15[meter]
     println("Half of $intLength is ${intLength / 2}") // Out: Half of 15 m is 7 m
     val scaledIntLength = intLength[centi(meter)]
     println("Half of $scaledIntLength is ${scaledIntLength / 2}") // Out: Half of 1500 cm is 750 cm
@@ -107,8 +106,8 @@ fun main(args: Array<String>) {
     println("${intLength[kilo(meter)]}") // Out: 0.015 km
 }
 
-private fun accelerationFromSpeedAndTime(speed: UnitNumber<Speed>, time: UnitNumber<Time>):
-        UnitNumber<Acceleration> {
+private fun accelerationFromSpeedAndTime(speed: UnitValue<Speed>, time: UnitValue<Time>):
+        UnitValue<Acceleration> {
     // Due to restrictions of the kotlin language, the product of units is unfortunately not
     // commutative, as it is in reality. But it is possible to convert 'compatible' units,
     // e.g. this statement line would throw an exception at runtime if the conversion is

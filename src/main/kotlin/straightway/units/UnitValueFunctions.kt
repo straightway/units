@@ -18,9 +18,9 @@ package straightway.units
 
 import straightway.numbers.compareTo
 
-fun <TQuantity : Quantity> min(vararg items: UnitNumber<TQuantity>) = items.min()!!
+fun <TQuantity : Quantity> min(vararg items: UnitValue<TQuantity>) = items.min()!!
 
-fun <TQuantity : Quantity> max(vararg items: UnitNumber<TQuantity>) = items.max()!!
+fun <TQuantity : Quantity> max(vararg items: UnitValue<TQuantity>) = items.max()!!
 
-fun <TNum : Number, TQuantity : Quantity> abs(value: UnitValue<TNum, TQuantity>) =
+fun <TQuantity : Quantity> abs(value: UnitValue<TQuantity>) =
         if (value.value < 0) -value else value
