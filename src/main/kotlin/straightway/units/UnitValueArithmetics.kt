@@ -43,10 +43,10 @@ operator fun <TQuantity1 : Quantity, TQuantity2 : Quantity>
                                       other.unit.baseQuantity as TQuantity2]
 
 operator fun <TNum : Number, TQuantity : Quantity> TNum.times(other: UnitValue<TQuantity>) =
-        UnitValueImpl(this * other.value, other.unit)
+        UnitNumber(this * other.value, other.unit)
 
 operator fun <TQuantity : Quantity> UnitValue<TQuantity>.times(x: Number) =
-        UnitValueImpl(value * x, unit)
+        UnitNumber(value * x, unit)
 
 @Suppress("UNCHECKED_CAST")
 operator fun <TQuantity1 : Quantity, TQuantity2 : Quantity>
@@ -55,7 +55,7 @@ operator fun <TQuantity1 : Quantity, TQuantity2 : Quantity>
                                       other.unit.baseQuantity as TQuantity2]
 
 operator fun <TNum : Number, TQuantity : Quantity> TNum.div(other: UnitValue<TQuantity>) =
-        UnitValueImpl(this / other.value, Reciprocal(other.unit))
+        UnitNumber(this / other.value, Reciprocal(other.unit))
 
 operator fun <TQuantity : Quantity> UnitValue<TQuantity>.div(x: Number) =
-        UnitValueImpl(value / x, unit)
+        UnitNumber(value / x, unit)

@@ -30,29 +30,30 @@ import straightway.numbers.unaryMinus
  * Basic arithmetic is available for unit values, either with other unit values
  * or with scalars.
  */
-data class UnitValueImpl<TValue : Number, TQuantity : Quantity>(
+data class UnitNumber<TValue : Number, TQuantity : Quantity>(
         override val value: TValue,
         override val unit: TQuantity
 ) : UnitValue<TQuantity> {
 
-    override val baseValue get() =
+    override val baseValue by lazy {
         value * unit.siScale.magnitude * unit.baseMagnitude + unit.valueShift
+    }
 
-    override operator fun get(newUnit: TQuantity) = UnitValueImpl(
+    override operator fun get(newUnit: TQuantity) = UnitNumber(
             (baseValue - newUnit.valueShift) * newUnit.siScale.reciprocal.magnitude /
                     newUnit.baseMagnitude, newUnit)
 
     override operator fun rangeTo(endInclusive: UnitValue<TQuantity>) =
             UnitValueRange(this, endInclusive)
 
-    operator fun unaryMinus() = UnitValueImpl(-value, unit)
+    operator fun unaryMinus() = UnitNumber(-value, unit)
     operator fun unaryPlus() = this
 
     override fun toString() =
             "$value $unit".trimEnd()
 
     override fun equals(other: Any?) =
-            other is UnitValueImpl<*, *> &&
+            other is UnitValue<*> &&
                     other.unit.id == unit.id &&
                     other.baseValue.compareTo(baseValue) == 0
 
@@ -68,10 +69,10 @@ data class UnitValueImpl<TValue : Number, TQuantity : Quantity>(
 }
 
 /**
- * Create a UnitValueImpl by combining a number with a given unit in square brackets.
+ * Create a UnitNumber by combining a number with a given unit in square brackets.
  */
 operator fun <TNum : Number, TQuantity : Quantity> TNum.get(unit: TQuantity): UnitValue<TQuantity> =
-        UnitValueImpl(this, unit)
+        UnitNumber(this, unit)
 
 /**
  * Convert the given unit value to a value with another compatible unit.

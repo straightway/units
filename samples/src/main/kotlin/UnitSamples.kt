@@ -80,7 +80,7 @@ fun main(args: Array<String>) {
         // Out: 3[second][kelvin] throws Panic: Incompatible units: K for 3 s
     }
 
-    // It is possible to access the value and the base value of a UnitValueImpl:
+    // It is possible to access the value and the base value of a UnitNumber:
     println("The value of ${2[kilo(meter)]} is ${2[kilo(meter)].value}")
     // Out: The value of 2 km is 2
 
