@@ -37,8 +37,8 @@ data class UnitDouble<TQuantity : Quantity>(
                     newUnit.siScale.reciprocal.magnitude.toDouble() /
                     newUnit.baseMagnitude.toDouble(), newUnit)
 
-    override operator fun rangeTo(endInclusive: UnitValue<TQuantity>) =
-            UnitValueRange(this, endInclusive)
+    operator fun rangeTo(endInclusive: UnitDouble<TQuantity>) =
+            Range(this, endInclusive)
 
     operator fun unaryMinus() = UnitDouble(-value, unit)
 
@@ -57,14 +57,14 @@ data class UnitDouble<TQuantity : Quantity>(
             (baseValue * other.baseValue)[unit.baseQuantity as TQuantity *
                                           other.unit.baseQuantity as TOtherQuantity]
 
-    operator fun times(x: Double) = UnitNumber(value * x, unit)
+    operator fun times(x: Double) = UnitDouble(value * x, unit)
 
     @Suppress("UNCHECKED_CAST")
     operator fun <TOtherQuantity : Quantity> div(other: UnitDouble<TOtherQuantity>) =
             (baseValue / other.baseValue)[unit.baseQuantity as TQuantity /
                                           other.unit.baseQuantity as TOtherQuantity]
 
-    operator fun div(x: Double) = UnitNumber(value / x, unit)
+    operator fun div(x: Double) = UnitDouble(value / x, unit)
 
     override fun toString() =
             "$value $unit".trimEnd()
@@ -82,6 +82,13 @@ data class UnitDouble<TQuantity : Quantity>(
 
     companion object {
         const val serialVersionUID = 1L
+    }
+
+    data class Range<TQuantity : Quantity>(
+            override val start: UnitDouble<TQuantity>,
+            override val endInclusive: UnitDouble<TQuantity>
+    ) : ClosedRange<UnitDouble<TQuantity>> {
+        override fun toString() = "$start..$endInclusive"
     }
 }
 

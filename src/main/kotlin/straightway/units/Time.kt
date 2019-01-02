@@ -56,13 +56,13 @@ operator fun LocalDateTime.plus(amount: UnitValue<Time>) =
 operator fun LocalDateTime.minus(amount: UnitValue<Time>) =
         (this - amount.toDuration())!!
 
-operator fun LocalDateTime.minus(other: LocalDateTime): UnitValue<Time> =
+operator fun LocalDateTime.minus(other: LocalDateTime): UnitDouble<Time> =
         Duration.between(other, this).toTime()
 
-fun Duration.toTime() = this.nano[nano(second)] + this.seconds[second]
+fun Duration.toTime() = this.nano.toDouble()[nano(second)] + this.seconds.toDouble()[second]
 
 private val zeroTime = LocalDateTime.of(0, 1, 1, 0, 0)
 val UnitValue<Time>.absolute get() = zeroTime + this
-val LocalDateTime.unitValue: UnitValue<Time> get() = this - zeroTime
+val LocalDateTime.unitValue: UnitDouble<Time> get() = this - zeroTime
 
 fun LocalDate.at(time: UnitValue<Time>) = LocalDateTime.of(this, LocalTime.MIDNIGHT) + time

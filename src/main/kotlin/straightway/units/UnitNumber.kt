@@ -43,9 +43,6 @@ data class UnitNumber<TValue : Number, TQuantity : Quantity>(
             (baseValue - newUnit.valueShift) * newUnit.siScale.reciprocal.magnitude /
                     newUnit.baseMagnitude, newUnit)
 
-    override operator fun rangeTo(endInclusive: UnitValue<TQuantity>) =
-            UnitValueRange(this, endInclusive)
-
     operator fun unaryMinus() = UnitNumber(-value, unit)
     operator fun unaryPlus() = this
 

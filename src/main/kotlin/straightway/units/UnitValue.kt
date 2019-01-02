@@ -21,7 +21,7 @@ import java.io.Serializable
  * A value with a unit.
  */
 interface UnitValue<TQuantity : Quantity>
-    : Comparable<UnitValue<TQuantity>>, Serializable, Rangeable<UnitValue<TQuantity>> {
+    : Comparable<UnitValue<TQuantity>>, Serializable {
     val value: Number
     val unit: TQuantity
     val baseValue: Number
