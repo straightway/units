@@ -34,7 +34,7 @@ import straightway.units.second
 import straightway.units.square
 import straightway.units.times
 
-@Suppress("TooGenericExceptionCaught", "MagicNumber")
+@Suppress("TooGenericExceptionCaught", "MagicNumber", "ThrowingExceptionInMain")
 fun main(args: Array<String>) {
 
     // To have a number with an attached unit, use the index operator, e.g.:
